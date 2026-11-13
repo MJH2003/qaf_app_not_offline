@@ -20,9 +20,11 @@ public class MainActivity extends BridgeActivity {
             actionBar.hide();
         }
 
-        // مخفی‌کردن اسکرول‌بار native خودِ WebView — این چیزیه که CSS
-        // نمی‌تونه کنترلش کنه، چون مربوط به خودِ کامپوننت اندرویدی WebView است
+        // مخفی‌کردن اسکرول‌بار native خودِ WebView
         bridge.getWebView().setVerticalScrollBarEnabled(false);
         bridge.getWebView().setHorizontalScrollBarEnabled(false);
+
+        // اجازه اتصال مستقیم به سرورهای HTTP بدون خطای Mixed Content
+        bridge.getWebView().getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
     }
 }

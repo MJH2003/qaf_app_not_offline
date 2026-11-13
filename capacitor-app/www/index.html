@@ -3135,7 +3135,7 @@ body{overflow-x:hidden!important;}
   async function initDatabase() {
     console.log('QAF API: بررسی اتصال به سرور:', API_BASE_URL);
     try {
-      const data = await apiFetch('/api/health', { timeout: 4000 });
+      const data = await apiFetch('/api/health', { timeout: 15000 });
       if (data && (data.status === 'ok' || data.ok)) {
         state.apiReady = true;
         state.dbReady = true;
@@ -3156,11 +3156,12 @@ body{overflow-x:hidden!important;}
   function setDbError(error) {
     console.warn('QAF API:', error);
     const statusText = $('loadingStatusText');
+    const errMsg = error?.message || String(error || 'خطای نامشخص');
     if (statusText) statusText.innerText = 'عدم اتصال به سرور';
     const home = $('recentReadingContent');
     const hasLastRead = !!localStorage.getItem('qaf_last_read_poem');
     if (!hasLastRead && home && !home.children.length) {
-      home.innerHTML = emptyState('عدم ارتباط با سرور', 'لطفاً اتصال اینترنت خود یا آدرس سرور را بررسی کنید.');
+      home.innerHTML = emptyState('عدم ارتباط با سرور', `آدرس سرور: ${esc(API_BASE_URL)}<br/><span style="font-size:12px;opacity:0.8;">${esc(errMsg)}</span><br/><button onclick="location.reload()" style="margin-top:10px;padding:6px 16px;border-radius:8px;background:var(--gold);color:#fff;border:none;cursor:pointer;">تلاش مجدد</button>`);
     }
   }
 
