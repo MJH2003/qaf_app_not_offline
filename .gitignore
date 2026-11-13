@@ -41,3 +41,9 @@ node_modules/
 # Signing (never commit)
 key.properties
 *.pem
+
+# Go server binaries and database
+server/qaf-api
+server/qaf-api.exe
+server/*.db*
+
