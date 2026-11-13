@@ -16,7 +16,7 @@ LimitNOFILE=65535
 
 # Security hardening
 ProtectSystem=full
-ProtectHome=true
+ProtectHome=false
 NoNewPrivileges=true
 PrivateTmp=true
 
