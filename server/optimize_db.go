@@ -29,13 +29,13 @@ func main() {
 	}
 	defer db.Close()
 
-	// Configure performance pragmas for write operations
+	// Configure low-memory pragmas safe for small VPS instances (512MB - 1GB RAM)
 	pragmas := []string{
 		"PRAGMA journal_mode = WAL;",
 		"PRAGMA synchronous = NORMAL;",
-		"PRAGMA cache_size = -128000;", // 128 MB cache
-		"PRAGMA temp_store = MEMORY;",
-		"PRAGMA mmap_size = 268435456;", // 256 MB memory-mapped I/O
+		"PRAGMA cache_size = -32000;", // 32 MB cache (safe for small RAM)
+		"PRAGMA temp_store = FILE;",   // Use disk for temp index sorting to avoid OOM
+		"PRAGMA mmap_size = 33554432;", // 32 MB memory-mapped I/O
 	}
 	for _, p := range pragmas {
 		if _, err := db.Exec(p); err != nil {
