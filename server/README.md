@@ -64,18 +64,23 @@ sudo chown -R $USER:$USER /opt/qaf
 cd /opt/qaf/server
 ```
 
-### 3. Decompress and Optimize Database
+### 3. Download, Decompress, and Optimize Database
 
-If `qaf.db` is compressed (`qaf.db.gz`), decompress it:
+Download the original database archive directly to your VPS from GitHub's CDN (takes ~2 seconds with VPS speeds):
+```bash
+curl -L -o qaf.db.gz "https://media.githubusercontent.com/media/thecurumo/qaf_app/main/capacitor-app/www/assets/databases/qaf.db.gz"
+```
+
+Decompress it:
 ```bash
 gzip -d qaf.db.gz
 ```
 
-Build the FTS5 search index:
+Build the FTS5 search index (takes ~20 seconds to index 3M+ verses):
 ```bash
 go run optimize_db.go
 ```
-This builds an FTS5 full-text table for instant verse and poem searches and optimizes SQLite indexes.
+This builds the FTS5 full-text table for instant verse and poem searches and optimizes SQLite indexes.
 
 ### 4. Build the Go Binary
 
