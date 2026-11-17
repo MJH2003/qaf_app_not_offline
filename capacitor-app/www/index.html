@@ -3,7 +3,8 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-  <meta content="#FAF9F6" name="theme-color"/>
+  <meta content="light dark" name="color-scheme"/>
+  <meta content="#FAF9F6" id="themeColorMeta" name="theme-color"/>
   <title>
    قاف — آرشیو ادبیات پارسی
   </title>
@@ -20,6 +21,8 @@
         }
 
         :root {
+            color-scheme: light;
+            accent-color: var(--gold);
             /* Palette - LIGHT MODE */
             --vellum: #FAF9F6;       /* بوم اصلی - کاغذ استخوانی نفیس */
             --chalk: #F4F2ED;        /* پاپیروس کارت‌ها */
@@ -39,11 +42,14 @@
             --font-mono: 'JetBrains Mono', monospace, sans-serif;
             --topbar-h: 60px;
             --touch-target: 44px;
+            --reader-verse-size: 15px;
             --safe-top: env(safe-area-inset-top, 0px);
             --safe-bottom: env(safe-area-inset-bottom, 0px);
         }
 
         [data-theme="dark"] {
+            color-scheme: dark;
+            accent-color: var(--gold);
             /* Palette - DARK MODE */
             --vellum: #141312;       /* بوم زغالی عمیق */
             --chalk: #1E1D1B;        /* پاپیروس شب */
@@ -2100,6 +2106,1227 @@ body{overflow-x:hidden!important;}
 .qaf-select-backdrop{pointer-events:none;}
 .qaf-select-menu{pointer-events:auto;}
 
+/* ==========================================================================
+   14. FAAL-E HAFEZ VIEW & CEREMONY STYLES
+   ========================================================================== */
+.faal-home-shortcut-section {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.faal-home-shortcut-card {
+    position: relative;
+    background: var(--chalk);
+    border: 1px solid rgba(173, 141, 46, 0.4);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+[data-theme="dark"] .faal-home-shortcut-card {
+    border-color: rgba(212, 180, 101, 0.35);
+    background: var(--chalk);
+}
+
+.faal-home-shortcut-card:active {
+    transform: scale(0.99);
+    border-color: var(--gold);
+}
+
+.faal-card-glow-backdrop {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(173, 141, 46, 0.18) 0%, rgba(173, 141, 46, 0) 70%);
+    pointer-events: none;
+}
+
+[data-theme="dark"] .faal-card-glow-backdrop {
+    background: radial-gradient(circle, rgba(212, 180, 101, 0.18) 0%, rgba(212, 180, 101, 0) 70%);
+}
+
+.faal-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    z-index: 2;
+}
+
+.faal-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.faal-mini-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(173, 141, 46, 0.12);
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+[data-theme="dark"] .faal-mini-badge {
+    background: rgba(212, 180, 101, 0.15);
+}
+
+.faal-card-prompt {
+    font-size: 12px;
+    color: var(--stone);
+}
+
+.faal-card-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 2px 0 0;
+    line-height: 1.5;
+}
+
+.faal-card-desc {
+    font-size: 12.5px;
+    color: var(--stone);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.faal-card-btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 6px;
+}
+
+.faal-card-btn-link .faal-arrow {
+    transition: transform 0.2s ease;
+}
+
+.faal-home-shortcut-card:active .faal-card-btn-link .faal-arrow {
+    transform: translateX(-4px);
+}
+
+.faal-card-emblem-wrap {
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.faal-card-medallion-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    background: var(--vellum);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    box-shadow: 0 4px 14px rgba(173, 141, 46, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.faal-home-shortcut-card:active .faal-card-medallion-icon {
+    transform: scale(1.08) rotate(5deg);
+}
+
+.faal-card-medallion-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Drawer badge */
+.faal-drawer-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.faal-pill-tag {
+    font-size: 10px;
+    background: var(--gold);
+    color: var(--vellum);
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Ceremony & Faal View */
+.faal-niyyat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 8px 0 24px;
+}
+
+.faal-niyyat-card {
+    background: var(--chalk);
+    border: 1px solid rgba(173, 141, 46, 0.35);
+    width: 100%;
+    padding: 32px 20px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.faal-sacred-ribbon {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(173, 141, 46, 0.12);
+    padding: 3px 14px;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+}
+
+.faal-sacred-heading {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.faal-sacred-instruction {
+    font-size: 13.5px;
+    color: var(--stone);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.faal-invocation-quote {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--vellum);
+    border-right: 3px solid var(--gold);
+    border-left: 3px solid var(--gold);
+    padding: 12px 18px;
+    line-height: 2.1;
+    max-width: 440px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.faal-medallion-wrap {
+    position: relative;
+    width: 144px;
+    height: 144px;
+    margin: 28px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.faal-medallion-wrap:active {
+    transform: scale(0.92);
+}
+
+.faal-glow-aura {
+    position: absolute;
+    inset: -16px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(173, 141, 46, 0.45) 0%, rgba(173, 141, 46, 0) 70%);
+    animation: faalPulse 2.8s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .faal-glow-aura {
+    background: radial-gradient(circle, rgba(212, 180, 101, 0.55) 0%, rgba(212, 180, 101, 0) 70%);
+}
+
+@keyframes faalPulse {
+    from { transform: scale(0.88); opacity: 0.55; }
+    to { transform: scale(1.18); opacity: 1; }
+}
+
+.faal-medallion-ring {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.ring-outer {
+    inset: 4px;
+    border: 1.5px dashed var(--gold);
+    animation: faalRotateClockwise 24s linear infinite;
+    opacity: 0.75;
+}
+
+.ring-middle {
+    inset: 16px;
+    border: 1px solid var(--gold);
+    animation: faalRotateCounter 18s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes faalRotateClockwise {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes faalRotateCounter {
+    to { transform: rotate(-360deg); }
+}
+
+.faal-medallion-core {
+    position: relative;
+    z-index: 2;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: var(--chalk);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    box-shadow: 0 6px 20px rgba(173, 141, 46, 0.35);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.faal-medallion-wrap.is-opening .faal-medallion-core {
+    transform: scale(1.22);
+    box-shadow: 0 0 36px var(--gold);
+}
+
+.faal-ceremony-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0 8px;
+    color: var(--gold);
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.faal-primary-trigger-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--gold);
+    color: #FFFFFF;
+    border: none;
+    padding: 13px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(173, 141, 46, 0.32);
+    transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+    margin-top: 14px;
+}
+
+[data-theme="dark"] .faal-primary-trigger-btn {
+    color: #141312;
+}
+
+.faal-primary-trigger-btn:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+/* Revealed Result Step */
+.faal-result-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    animation: fadeIn 0.35s ease-out;
+}
+
+.faal-result-header-card {
+    background: var(--chalk);
+    border: 1px solid rgba(173, 141, 46, 0.35);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    position: relative;
+}
+
+.faal-result-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.faal-witness-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--gold);
+    color: #FFFFFF;
+    padding: 2px 10px;
+    border-radius: 2px;
+}
+
+[data-theme="dark"] .faal-witness-badge {
+    color: #141312;
+}
+
+.faal-source-badge {
+    font-size: 12.5px;
+    color: var(--stone);
+}
+
+.faal-result-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 4px 0 0;
+}
+
+.faal-verses-scroll-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.faal-verse-card {
+    background: var(--vellum);
+    border: 1px solid rgba(138, 141, 145, 0.2);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    transition: border-color 0.15s ease;
+}
+
+.faal-verse-card:hover {
+    border-color: rgba(173, 141, 46, 0.4);
+}
+
+.faal-verse-num {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.faal-verse-line {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--ink);
+    text-align: center;
+}
+
+/* Expandable Interpretation Box */
+.faal-interpretation-accordion {
+    background: var(--chalk);
+    border: 1px solid rgba(173, 141, 46, 0.4);
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.faal-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: rgba(173, 141, 46, 0.08);
+}
+
+[data-theme="dark"] .faal-accordion-header {
+    background: rgba(212, 180, 101, 0.1);
+}
+
+.faal-accordion-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.faal-accordion-chevron {
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.25s ease;
+}
+
+.faal-interpretation-accordion.is-open .faal-accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.faal-accordion-body {
+    display: none;
+    padding: 18px 20px;
+    border-top: 1px solid rgba(173, 141, 46, 0.2);
+    font-size: 14.5px;
+    line-height: 2.1;
+    color: var(--ink);
+}
+
+.faal-interpretation-accordion.is-open .faal-accordion-body {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Micro Actions Bar */
+.faal-micro-actions-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.faal-action-btn {
+    flex: 1 1 calc(33.333% - 10px);
+    min-width: 130px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border: 1px solid var(--stone);
+    background: var(--vellum);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.faal-action-btn:active {
+    transform: scale(0.97);
+}
+
+.faal-action-story {
+    background: var(--chalk);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.faal-action-story:active {
+    background: var(--gold);
+    color: var(--vellum);
+}
+
+.faal-action-retry:active {
+    border-color: var(--gold);
+}
+
+.faal-action-reader:active {
+    border-color: var(--gold);
+}
+
+/* ==========================================================================
+   15. AESTHETIC STORY & QUOTE CARD STUDIO DIALOG (NATIVE <dialog>)
+   ========================================================================== */
+dialog:modal {
+    overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background: var(--overlay-scrim);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+dialog.card-studio-modal {
+    margin: auto;
+    padding: 0;
+    width: calc(100% - 24px);
+    max-width: 660px;
+    max-height: calc(100dvh - 28px - var(--safe-top) - var(--safe-bottom));
+    background: var(--vellum);
+    color: var(--ink);
+    border: 1px solid rgba(138, 141, 145, 0.35);
+    border-top: 3px solid var(--gold);
+    overflow: hidden;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45);
+}
+
+dialog.card-studio-modal[open] {
+    display: flex;
+    flex-direction: column;
+    animation: studioEnter 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes studioEnter {
+    from { opacity: 0; transform: scale(0.95) translateY(12px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.card-studio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(138, 141, 145, 0.2);
+    background: var(--vellum);
+    flex-shrink: 0;
+}
+
+.card-studio-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-studio-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.card-studio-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--stone);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease, transform 0.12s ease;
+}
+
+.card-studio-close-btn:active {
+    color: var(--ink);
+    transform: scale(0.92);
+}
+
+.card-studio-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-canvas-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(138, 141, 145, 0.18);
+    min-height: 220px;
+    position: relative;
+}
+
+[data-theme="dark"] .card-canvas-preview-container {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+#cardCanvas {
+    max-width: 260px;
+    max-height: 42vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    display: block;
+    transition: max-width 0.2s ease;
+}
+
+.card-studio-controls {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.studio-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.studio-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.studio-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--stone);
+}
+
+.studio-val-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* Aspect Ratio Toggle */
+.studio-ratio-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.studio-ratio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.studio-ratio-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 600;
+    background: rgba(173, 141, 46, 0.1);
+}
+
+/* 4 Themes Grid */
+.studio-themes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+@media (min-width: 480px) {
+    .studio-themes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.studio-theme-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.studio-theme-card.active {
+    border-color: var(--gold);
+    font-weight: 600;
+    color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold);
+}
+
+.theme-color-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.theme-swatch-golden { background: #EBDDC8; }
+.theme-swatch-obsidian { background: #141312; }
+.theme-swatch-azure { background: #0B192C; }
+.theme-swatch-ivory { background: #FAF9F6; }
+.theme-swatch-ruby { background: #4A121D; }
+.theme-swatch-turquoise { background: #0E4A50; }
+.pro-mini-tag { font-size: 9.5px; background: rgba(173,141,46,0.18); color: var(--gold); padding: 1px 5px; font-weight: 700; margin-right: auto; }
+
+/* Sliders */
+.studio-range {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(138, 141, 145, 0.3);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.studio-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Switch */
+.studio-toggle-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.studio-switch {
+    width: 38px;
+    height: 22px;
+    accent-color: var(--gold);
+    cursor: pointer;
+}
+
+/* Textarea & Input */
+.studio-textarea, .studio-input {
+    width: 100%;
+    background: var(--input-focus-bg);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.8;
+    outline: none;
+    border-radius: 0;
+    transition: border-color 0.15s ease;
+}
+
+.studio-textarea:focus, .studio-input:focus {
+    border-color: var(--gold);
+}
+
+/* Studio Footer */
+.card-studio-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid rgba(138, 141, 145, 0.2);
+    background: var(--vellum);
+    flex-shrink: 0;
+}
+
+.studio-btn {
+    flex: 1;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.studio-btn:active {
+    transform: scale(0.97);
+}
+
+.studio-btn-primary {
+    background: var(--gold);
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .studio-btn-primary {
+    color: #141312;
+}
+
+.studio-btn-secondary {
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+}
+
+.studio-btn-secondary:active {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ==========================================================================
+   16. DAILY MASTERPIECE, MOOD EXPLORER, COUPLET READER, MUSHAIRA & QAF PLUS
+   ========================================================================== */
+#view-poem-reader .hemistich-line {
+    font-size: var(--reader-verse-size, 15px);
+}
+@media (min-width: 560px) {
+    .verse-content-layout.is-couplet {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 24px;
+        align-items: baseline;
+    }
+    .verse-content-layout.is-couplet .hemistich-line:nth-child(2) {
+        text-align: left;
+    }
+}
+.hemistich-line.is-cloze {
+    filter: blur(5.5px);
+    cursor: pointer;
+    transition: filter 0.22s ease, opacity 0.22s ease;
+    opacity: 0.65;
+    user-select: none;
+}
+.hemistich-line.is-cloze.is-revealed {
+    filter: none;
+    opacity: 1;
+}
+.reader-font-pill {
+    font-size: 11px;
+    font-weight: 700;
+    width: auto !important;
+    padding: 0 8px;
+}
+
+/* Daily Verse & Streak */
+.daily-masterpiece-card {
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    border-top: 3px solid var(--gold);
+    padding: 18px 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
+.daily-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-bottom: 0.5px dotted rgba(138, 141, 145, 0.35);
+    padding-bottom: 8px;
+}
+.daily-badge-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.streak-pill-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    background: rgba(173, 141, 46, 0.12);
+    border: 1px solid rgba(173, 141, 46, 0.35);
+    padding: 2px 10px;
+}
+.daily-couplet-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px 0;
+    text-align: center;
+}
+.daily-couplet-line {
+    font-size: clamp(15px, 2.5vw, 17.5px);
+    font-weight: 500;
+    line-height: 1.95;
+    color: var(--ink);
+}
+.daily-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-top: 0.5px dotted var(--stone);
+    padding-top: 10px;
+}
+.daily-poet-attr {
+    font-size: 12px;
+    color: var(--stone);
+    cursor: pointer;
+}
+.daily-poet-attr strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+.daily-actions-cluster {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.daily-mini-btn {
+    background: var(--vellum);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.daily-mini-btn.is-gold {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* Mood Chips */
+.mood-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.mood-chip-btn {
+    flex: 1 1 calc(33.333% - 8px);
+    min-width: 112px;
+    min-height: 40px;
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.mood-chip-btn.active {
+    border-color: var(--gold);
+    border-top: 2px solid var(--gold);
+    color: var(--gold);
+    background: var(--tab-active-bg);
+}
+.home-feature-duo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+@media (min-width: 560px) {
+    .home-feature-duo {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Offline Poet Pack Bar */
+.offline-pack-bar {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 0.5px dotted var(--stone);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.offline-pack-btn {
+    background: var(--vellum);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.offline-pack-status {
+    font-size: 11.5px;
+    color: var(--stone);
+}
+
+/* Mushaira & Rhyme Studio */
+.mushaira-hud {
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    border-top: 2.5px solid var(--gold);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.mushaira-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12.5px;
+    color: var(--stone);
+}
+.mushaira-stats-row strong {
+    color: var(--ink);
+    font-size: 15px;
+}
+.mushaira-letter-orb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--vellum);
+    border: 1.5px solid var(--gold);
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--ink);
+}
+.mushaira-letter-orb b {
+    color: var(--gold);
+    font-size: 19px;
+}
+.mushaira-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 46vh;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+.mushaira-turn-card {
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.mushaira-turn-card.is-qaf {
+    border-right: 3px solid var(--gold);
+}
+.mushaira-turn-card.is-user {
+    background: var(--vellum);
+    border-left: 3px solid var(--stone);
+}
+.mushaira-turn-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--stone);
+}
+.mushaira-turn-head strong {
+    color: var(--gold);
+}
+.rhyme-words-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+.rhyme-word-pill {
+    background: var(--chalk);
+    border: 1px solid var(--gold);
+    color: var(--ink);
+    padding: 4px 11px;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.alphabet-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+}
+.alpha-letter-btn {
+    min-height: 38px;
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.alpha-letter-btn.active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: #fff;
+}
+
+/* Qaf Plus View */
+.plus-hero-plaque {
+    background: var(--chalk);
+    border: 1px solid var(--gold);
+    border-top: 3px solid var(--gold);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    align-items: center;
+}
+.plus-perks-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+@media (min-width: 520px) {
+    .plus-perks-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.plus-perk-card {
+    background: var(--chalk);
+    border: 1px solid var(--stone);
+    border-top: 2px solid var(--gold);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.plus-perk-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+}
+.plus-perk-desc {
+    font-size: 12.5px;
+    color: var(--stone);
+    line-height: 1.75;
+}
+.qaf-toast {
+    position: fixed;
+    bottom: calc(20px + var(--safe-bottom));
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink);
+    color: var(--vellum);
+    padding: 10px 18px;
+    font-size: 12.5px;
+    font-weight: 600;
+    z-index: 10080;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border-top: 2px solid var(--gold);
+    max-width: 90vw;
+    text-align: center;
+}
+.qaf-toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
 
   </style>
  </head>
@@ -2163,6 +3390,90 @@ body{overflow-x:hidden!important;}
              VIEW 1: HOME (صفحه نخست)
              ======================================================== -->
    <div class="spa-view active-view" id="view-home">
+    <!-- بیتِ امروز + روزشمار انس با شعر -->
+    <section id="dailyMasterpieceSection">
+     <div class="archival-section-header">
+      <div class="archival-header-title-wrap">
+       <div class="archival-rhombus-icon"></div>
+       <h2>بیتِ امروز</h2>
+      </div>
+      <span class="streak-pill-badge" id="readingStreakBadge">انس روزانه با شعر</span>
+     </div>
+     <div id="dailyMasterpieceContainer"></div>
+    </section>
+
+    <!-- شعرِ حالِ تو (Mood & Vibe Explorer) -->
+    <section id="moodDiscoverySection">
+     <div class="archival-section-header">
+      <div class="archival-header-title-wrap">
+       <div class="archival-rhombus-icon"></div>
+       <h2>شعرِ حالِ تو</h2>
+      </div>
+      <span style="font-size:11.5px;color:var(--stone);">انتخاب حال‌وهوا</span>
+     </div>
+     <div class="mood-chips-grid" id="moodChipsBar">
+      <button type="button" class="mood-chip-btn" data-mood="hope" onclick="selectDiscoverMood('hope',this)">✨ امید و روشنایی</button>
+      <button type="button" class="mood-chip-btn" data-mood="love" onclick="selectDiscoverMood('love',this)">❤️ عشق و دلدادگی</button>
+      <button type="button" class="mood-chip-btn" data-mood="calm" onclick="selectDiscoverMood('calm',this)">🌿 آرامش و صبر</button>
+      <button type="button" class="mood-chip-btn" data-mood="wisdom" onclick="selectDiscoverMood('wisdom',this)">📜 حکمت و زندگی</button>
+      <button type="button" class="mood-chip-btn" data-mood="joy" onclick="selectDiscoverMood('joy',this)">☀️ شوق و شادی</button>
+      <button type="button" class="mood-chip-btn" data-mood="mystic" onclick="selectDiscoverMood('mystic',this)">🕯️ عرفان و سلوک</button>
+     </div>
+     <div class="poems-flat-list" id="moodResultsStream" style="margin-top:12px;display:none;"></div>
+    </section>
+
+    <!-- دوگانه آیین و بازی ادبی: فال حافظ + مشاعره و قافیه‌یاب -->
+    <section class="home-feature-duo">
+     <div class="faal-home-shortcut-card" onclick="navigateTo('view-faal')">
+      <div class="faal-card-glow-backdrop"></div>
+      <div class="faal-card-body">
+       <div class="faal-card-meta">
+        <span class="faal-mini-badge">لسان‌الغیب</span>
+       </div>
+       <h2 class="faal-card-title">فال حافظ شیرازی</h2>
+       <p class="faal-card-desc">تفأل با نیت قلبی همراه با تعبیر معنوی و استوری‌ساز</p>
+       <div class="faal-card-btn-link">
+        <span>گشودن دیوان</span>
+        <span class="faal-arrow">←</span>
+       </div>
+      </div>
+      <div class="faal-card-emblem-wrap">
+       <div class="faal-card-medallion-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
+         <circle cx="24" cy="24" r="17" stroke="currentColor" stroke-width="1"/>
+         <path d="M16 14h16c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H16c-1.1 0-2-.9-2-2V16c0-1.1.9-2 2-2z" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.5"/>
+         <path d="M24 14v22M14 20h20M14 28h20" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+         <polygon points="24,20 27,24 24,28 21,24" fill="currentColor"/>
+        </svg>
+       </div>
+      </div>
+     </div>
+
+     <div class="faal-home-shortcut-card" onclick="navigateTo('view-mushaira')">
+      <div class="faal-card-glow-backdrop"></div>
+      <div class="faal-card-body">
+       <div class="faal-card-meta">
+        <span class="faal-mini-badge">تعاملی و هوشمند</span>
+       </div>
+       <h2 class="faal-card-title">مشاعره و قافیه‌یاب</h2>
+       <p class="faal-card-desc">دوئل مشاعره زنده با قاف، واژگان هم‌قافیه و بیت‌یاب الفبایی</p>
+       <div class="faal-card-btn-link">
+        <span>ورود به میدان مشاعره</span>
+        <span class="faal-arrow">←</span>
+       </div>
+      </div>
+      <div class="faal-card-emblem-wrap">
+       <div class="faal-card-medallion-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg">
+         <path d="M12 20h9"/>
+         <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        </svg>
+       </div>
+      </div>
+     </div>
+    </section>
+
     <section id="recentReadingSection">
      <div class="archival-section-header">
       <div class="archival-header-title-wrap">
@@ -2334,6 +3645,13 @@ body{overflow-x:hidden!important;}
        </button>
       </div>
       <div class="poet-linear-metadata" id="poetDetailMetadata">
+      </div>
+      <div class="offline-pack-bar">
+       <span class="offline-pack-status" id="poetOfflineStatus">گزیده اشعار این سخنور را برای مطالعه بدون اینترنت ذخیره کنید.</span>
+       <button type="button" class="offline-pack-btn" id="poetOfflineDownloadBtn" onclick="downloadPoetOfflinePack()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>ذخیره بسته آفلاین</span>
+       </button>
       </div>
      </div>
     </section>
@@ -2529,6 +3847,14 @@ body{overflow-x:hidden!important;}
       </span>
      </div>
      <div class="poem-header-actions">
+      <button aria-label="کاهش اندازه قلم" class="poem-tool-btn reader-font-pill" onclick="adjustReaderFontSize(-1)" type="button">کـ-</button>
+      <button aria-label="افزایش اندازه قلم" class="poem-tool-btn reader-font-pill" onclick="adjustReaderFontSize(1)" type="button">کـ+</button>
+      <button aria-label="حالت حفظ شعر" class="poem-tool-btn" id="memorizeToggleBtn" onclick="toggleMemorizeMode()" title="حالت حفظ شعر (پوشاندن مصراع دوم)" type="button">
+       <svg fill="none" height="14" stroke="currentColor" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+       </svg>
+      </button>
       <button aria-label="کپی متن شعر" class="poem-tool-btn" onclick="copyFullPoem(this)" type="button">
        <svg fill="none" height="14" stroke="currentColor" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
         <rect height="13" rx="2" width="13" x="9" y="9">
@@ -2794,7 +4120,7 @@ body{overflow-x:hidden!important;}
    <div class="spa-view" id="view-about">
     <section>
      <div class="archival-text-card">
-      <p class="archival-card-prose">«قاف» تلاشی کوچک برای نزدیک ماندن به شعر و نثر پارسی است؛ جایی برای جست‌وجو، خواندن و دوباره بازگشتن به کلمات. قاف کاملاً رایگان و آفلاین ساخته شده تا این گنجینه، بی‌نیاز از اینترنت، همیشه در دسترس بماند.</p>
+      <p class="archival-card-prose">«قاف» تلاشی برای نزدیک ماندنِ روزانه به شعر و ادب پارسی است؛ جایی برای جست‌وجوی فوق‌سریع، تفأل به حافظ، مشاعره، قافیه‌یاب، ساخت کارت‌های هنری و مطالعه آرام آثار کهن و معاصر با امکان ذخیره بسته‌های آفلاین روی دستگاه.</p>
      </div>
     </section>
     <section>
@@ -2826,6 +4152,224 @@ body{overflow-x:hidden!important;}
      </div>
     </section>
    </div>
+   <!-- ========================================================
+             VIEW 11: FAAL-E HAFEZ (فال حافظ شیرازی)
+             ======================================================== -->
+   <div class="spa-view" id="view-faal">
+    <div class="archival-section-header">
+     <div class="archival-header-title-wrap">
+      <div class="archival-rhombus-icon"></div>
+      <h2>تفأل به دیوان لسان‌الغیب</h2>
+     </div>
+     <a class="archival-header-link" onclick="navigateTo('view-home')">
+      <span>بازگشت</span>
+      <span>←</span>
+     </a>
+    </div>
+
+    <!-- مرحله ۱: نیت و طلب فال -->
+    <div class="faal-niyyat-container" id="faalNiyyatStep">
+     <div class="faal-niyyat-card">
+      <div class="faal-sacred-ribbon">دیوان لسان‌الغیب حافظ شیرازی</div>
+      <h3 class="faal-sacred-heading">نیت کنید و با خلوص دل به دیوان رجوع نمایید</h3>
+      <p class="faal-sacred-instruction">
+       چشم دل بگشایید، فاتحه‌ای نثار روان پاک خواجه شیراز فرمایید، نیت در ضمیر گیرید و دیوان را بگشایید:
+      </p>
+      <div class="faal-invocation-quote">
+       «ای حافظ شیرازی، تو کاشف هر رازی<br>ما طالب یک فالیم، بر ما بنما رازی»
+      </div>
+      
+      <!-- گرافیک مدال درخشان و دیوان زرین با انیمیشن لمسی -->
+      <div class="faal-medallion-wrap" id="faalMedallion" onclick="performFaalCeremony()" role="button" aria-label="گشودن دیوان و طلب فال">
+       <div class="faal-glow-aura"></div>
+       <div class="faal-medallion-ring ring-outer"></div>
+       <div class="faal-medallion-ring ring-middle"></div>
+       <div class="faal-medallion-core">
+        <svg class="faal-book-icon" viewBox="0 0 64 64" fill="none" width="46" height="46" xmlns="http://www.w3.org/2000/svg">
+         <path d="M12 10C12 8.89543 12.8954 8 14 8H50C51.1046 8 52 8.89543 52 10V52C52 53.1046 51.1046 54 50 54H14C12.8954 54 12 53.1046 12 52V10Z" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+         <path d="M20 8V54M12 46H52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+         <circle cx="36" cy="28" r="9" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+         <polygon points="36,22 39,28 36,34 33,28" fill="currentColor"/>
+         <path d="M28 40H44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+       </div>
+      </div>
+
+      <div class="faal-ceremony-status" id="faalCeremonyStatus" style="display:none;">
+       <div class="qaf-inline-loader-spin"></div>
+       <span class="faal-status-msg">در حال ورق زدن دیوان و کشف راز معنوی...</span>
+      </div>
+
+      <button type="button" class="faal-primary-trigger-btn" id="openFaalTriggerBtn" onclick="performFaalCeremony()">
+       <span>گشودن دیوان و دریافت فال</span>
+       <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+       </svg>
+      </button>
+     </div>
+    </div>
+
+    <!-- مرحله ۲: نمایش غزل مکشوف و تعبیر فال -->
+    <div class="faal-result-container" id="faalResultStep" style="display:none;">
+     <div class="faal-result-header-card">
+      <div class="faal-result-badge-row">
+       <span class="faal-witness-badge">شاهد فال</span>
+       <span class="faal-source-badge" id="faalPoetName">حافظ شیرازی</span>
+      </div>
+      <h3 class="faal-result-title" id="faalPoemTitle">غزل حافظ</h3>
+     </div>
+
+     <!-- ابیات مکشوف غزل -->
+     <div class="faal-verses-scroll-box" id="faalVersesContainer">
+     </div>
+
+     <!-- جعبه آکاردئونی تعبیر و پیام فال -->
+     <div class="faal-interpretation-accordion is-open" id="faalInterpretationCard">
+      <div class="faal-accordion-header" onclick="toggleFaalInterpretation()">
+       <div class="faal-accordion-title-wrap">
+        <svg class="faal-accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+        </svg>
+        <span class="faal-accordion-title">تعبیر و پیام فال</span>
+       </div>
+       <span class="faal-accordion-chevron" id="faalChevron">⌄</span>
+      </div>
+      <div class="faal-accordion-body" id="faalInterpretationBody">
+       <div class="faal-interpretation-text" id="faalInterpretationText">
+       </div>
+      </div>
+     </div>
+
+     <!-- ریزکنش‌ها (Micro-actions) -->
+     <div class="faal-micro-actions-bar">
+      <button type="button" class="faal-action-btn faal-action-story" onclick="openCardStudioFromFaal()">
+       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+       </svg>
+       <span>اشتراک و ساخت استوری</span>
+      </button>
+      <button type="button" class="faal-action-btn faal-action-reader" id="faalReaderBtn" onclick="openFaalInReader()">
+       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+       </svg>
+       <span>مشاهده کامل در دیوان</span>
+      </button>
+      <button type="button" class="faal-action-btn faal-action-retry" onclick="resetFaalView()">
+       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+       </svg>
+       <span>فال مجدد</span>
+      </button>
+     </div>
+    </div>
+   </div>
+
+   <!-- ========================================================
+             VIEW 12: MUSHAIRA & RHYME STUDIO (مشاعره و قافیه‌یاب)
+             ======================================================== -->
+   <div class="spa-view" id="view-mushaira">
+    <nav class="workspace-tabs-bar">
+     <button class="workspace-tab-btn active" id="mushTabBtnDuel" onclick="switchMushairaTab('duel',this)" type="button">
+      <span>دوئل مشاعره با قاف</span>
+     </button>
+     <button class="workspace-tab-btn" id="mushTabBtnRhyme" onclick="switchMushairaTab('rhyme',this)" type="button">
+      <span>قافیه‌یاب و بیت‌یاب</span>
+     </button>
+    </nav>
+
+    <!-- پنل ۱: دوئل مشاعره هوشمند -->
+    <section class="tab-panel active" id="mushPanelDuel">
+     <div class="mushaira-hud">
+      <div class="mushaira-stats-row">
+       <span>امتیاز: <strong id="mushairaScoreVal">۰</strong></span>
+       <span>رشته: <strong id="mushairaStreakVal">۰</strong></span>
+      </div>
+      <div class="mushaira-letter-orb">
+       <span>نوبت شما با حرف:</span>
+       <b id="mushairaTargetLetter">د</b>
+      </div>
+     </div>
+
+     <div class="mushaira-feed" id="mushairaFeed"></div>
+
+     <div class="search-console-plaque" style="gap:10px;">
+      <textarea class="studio-textarea" id="mushairaUserInput" rows="2" placeholder="بیت خود را با حرف مشخص‌شده بنویسید یا از «پیشنهاد بیت» کمک بگیرید..."></textarea>
+      <div class="console-action-bar" style="grid-template-columns: 1.3fr 1fr 0.8fr; padding-top:10px;">
+       <button type="button" class="execute-search-btn" onclick="submitMushairaTurn()">ارسال بیت</button>
+       <button type="button" class="execute-search-btn" onclick="requestMushairaHint()">پیشنهاد بیت</button>
+       <button type="button" class="reset-filter-btn" onclick="startNewMushairaGame()">از نو</button>
+      </div>
+      <div class="poems-flat-list" id="mushairaHintList" style="display:none;"></div>
+     </div>
+    </section>
+
+    <!-- پنل ۲: قافیه‌یاب و بیت‌یاب الفبایی -->
+    <section class="tab-panel" id="mushPanelRhyme">
+     <div class="search-console-plaque">
+      <div class="archival-header-title-wrap">
+       <div class="archival-rhombus-icon"></div>
+       <h2 style="font-size:15px;">واژه‌یاب هم‌قافیه در شعر کلاسیک</h2>
+      </div>
+      <div class="console-main-search-box">
+       <input class="console-main-input" id="rhymeWordInput" onkeydown="if(event.key==='Enter')runRhymeSearch()" placeholder="واژه پایانی را بنویسید (مثلاً: بهار، جانان، آیینه، مست)..." type="text"/>
+      </div>
+      <button type="button" class="execute-search-btn" onclick="runRhymeSearch()">یافتن هم‌قافیه‌ها و شواهد شعری</button>
+      <div class="rhyme-words-cloud" id="rhymeWordsCloud"></div>
+     </div>
+
+     <div class="search-console-plaque">
+      <div class="archival-header-title-wrap">
+       <div class="archival-rhombus-icon"></div>
+       <h2 style="font-size:15px;">بیت‌یاب مشاعره بر اساس حرف آغازین</h2>
+      </div>
+      <div class="alphabet-picker-grid" id="alphabetPickerGrid"></div>
+     </div>
+
+     <div class="poems-flat-list" id="rhymeCoupletsStream"></div>
+    </section>
+   </div>
+
+   <!-- ========================================================
+             VIEW 13: QAF PLUS & SUPPORTERS (قاف پلاس — نسخه حامیان)
+             ======================================================== -->
+   <div class="spa-view" id="view-plus">
+    <section class="plus-hero-plaque">
+     <span class="faal-sacred-ribbon">قاف پلاس • باشگاه حامیان ادب پارسی</span>
+     <h1 style="font-size:21px;font-weight:700;color:var(--ink);">گنجینه شعر همیشه رایگان می‌ماند؛ ابزارهای هنری با حمایت شما می‌درخشند</h1>
+     <p class="faal-sacred-instruction" style="margin-bottom:4px;">تمامی اشعار، سخنوران، جست‌وجوی پیشرفته، فال حافظ و مشاعره برای همه کاربران رایگان و بدون تبلیغ است. با «قاف پلاس» امکانات ویژه استودیو و مطالعه آفلاین را باز کنید.</p>
+     <button type="button" class="faal-primary-trigger-btn" id="qafPlusToggleBtn" onclick="toggleQafPlus()">فعال‌سازی آزمایشی قاف پلاس (رایگان)</button>
+     <span style="font-size:11.5px;color:var(--stone);" id="qafPlusStatusSub">نسخه پیش‌نمایش حامیان روی این دستگاه قابل فعال‌سازی است.</span>
+    </section>
+
+    <section class="plus-perks-grid">
+     <div class="plus-perk-card">
+      <div class="plus-perk-title">✦ حذف واترمارک در کارت‌ساز استوری</div>
+      <div class="plus-perk-desc">امکان صدور تصاویر استوری و پست اینستاگرام بدون امضای پایانی قاف، مناسب صفحات ادبی و هنری.</div>
+     </div>
+     <div class="plus-perk-card">
+      <div class="plus-perk-title">✦ پوسته‌های سلطنتی «یاقوت» و «فیروزه»</div>
+      <div class="plus-perk-desc">دسترسی به تذهیب یاقوت خسروانی و فیروزه نیشابور با قاب شمسه در استودیو کارت‌ساز.</div>
+     </div>
+     <div class="plus-perk-card">
+      <div class="plus-perk-title">✦ گنجینه آفلاین ۵۰۰ شعر برگزیده</div>
+      <div class="plus-perk-desc">افزایش ظرفیت کش آفلاین دستگاه تا ۵۰۰ شعر و دانلود تک‌کلیکی بسته‌های ۸۰ شعری هر سخنور.</div>
+     </div>
+     <div class="plus-perk-card">
+      <div class="plus-perk-title">✦ حمایت مستقیم از پایداری سرورهای قاف</div>
+      <div class="plus-perk-desc">کمک به نگهداری سرور جست‌وجوی آنی ۳ میلیون بیت بدون نمایش هیچ‌گونه تبلیغ مزاحم.</div>
+     </div>
+    </section>
+
+    <section class="archival-text-card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+     <span style="font-size:13px;color:var(--ink);">مایل به حمایت مالی اختیاری از پروژه متن‌باز قاف هستید؟</span>
+     <a class="archival-header-link" onclick="navigateTo('view-about')"><span>مشاهده راه‌های حمایت ←</span></a>
+    </section>
+   </div>
+
    <!-- VISUAL COLOPHON (لنگر پایانی حرف ق) -->
    <div class="app-colophon-anchor">
     <div class="colophon-axis">
@@ -2876,6 +4420,26 @@ body{overflow-x:hidden!important;}
        </polyline>
       </svg>
      </div>
+     <div class="drawer-nav-item" id="navItem-faal" onclick="navigateTo('view-faal'); closeDrawer();">
+      <span class="faal-drawer-badge-wrap">
+       <span>فال حافظ</span>
+       <span class="faal-pill-tag">ویژه</span>
+      </span>
+      <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+       <polyline points="15 18 9 12 15 6">
+       </polyline>
+      </svg>
+     </div>
+     <div class="drawer-nav-item" id="navItem-mushaira" onclick="navigateTo('view-mushaira'); closeDrawer();">
+      <span class="faal-drawer-badge-wrap">
+       <span>مشاعره و قافیه‌یاب</span>
+       <span class="faal-pill-tag">جدید</span>
+      </span>
+      <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+       <polyline points="15 18 9 12 15 6">
+       </polyline>
+      </svg>
+     </div>
      <div class="drawer-nav-item" id="navItem-poets" onclick="navigateTo('view-poets'); closeDrawer();">
       <span>
        سخنوران
@@ -2897,6 +4461,16 @@ body{overflow-x:hidden!important;}
      <div class="drawer-nav-item" id="navItem-profile" onclick="navigateTo('view-profile'); closeDrawer();">
       <span>
        بایگانی و نشان‌ها
+      </span>
+      <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+       <polyline points="15 18 9 12 15 6">
+       </polyline>
+      </svg>
+     </div>
+     <div class="drawer-nav-item" id="navItem-plus" onclick="navigateTo('view-plus'); closeDrawer();">
+      <span class="faal-drawer-badge-wrap">
+       <span>قاف پلاس (نسخه حامیان)</span>
+       <span class="faal-pill-tag" id="drawerPlusBadge">✦</span>
       </span>
       <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
        <polyline points="15 18 9 12 15 6">
@@ -3049,6 +4623,115 @@ body{overflow-x:hidden!important;}
    </div>
   </div>
   <!-- ============================================================
+         12.5 AESTHETIC STORY & QUOTE CARD STUDIO DIALOG (NATIVE <dialog>)
+         ============================================================ -->
+  <dialog class="card-studio-modal" id="cardStudioModal" closedby="any" aria-labelledby="cardStudioTitle">
+   <div class="card-studio-header">
+    <div class="card-studio-title-wrap">
+     <div class="archival-rhombus-icon"></div>
+     <h3 id="cardStudioTitle" class="card-studio-title">کارت‌ساز اشعار و استوری</h3>
+    </div>
+    <button type="button" class="card-studio-close-btn" onclick="closeCardStudio()" aria-label="بستن کارت‌ساز">
+     <svg fill="none" height="20" stroke="currentColor" stroke-linecap="square" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" x2="6" y1="6" y2="18"></line>
+      <line x1="6" x2="18" y1="6" y2="18"></line>
+     </svg>
+    </button>
+   </div>
+   <div class="card-studio-body">
+    <div class="card-canvas-preview-container">
+     <canvas id="cardCanvas" width="1080" height="1920"></canvas>
+    </div>
+    <div class="card-studio-controls">
+     <div class="studio-control-group">
+      <label class="studio-label">ابعاد کارت</label>
+      <div class="studio-ratio-toggle">
+       <button type="button" class="studio-ratio-btn active" id="btnRatioStory" onclick="setCardRatio('story')" autofocus>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect></svg>
+        <span>استوری اینستاگرام (۹:۱۶)</span>
+       </button>
+       <button type="button" class="studio-ratio-btn" id="btnRatioSquare" onclick="setCardRatio('square')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
+        <span>مربع پست (۱:۱)</span>
+       </button>
+      </div>
+     </div>
+     <div class="studio-control-group">
+      <label class="studio-label">پوسته و تذهیب</label>
+      <div class="studio-themes-grid">
+       <button type="button" class="studio-theme-card active" data-theme="golden-vellum" onclick="setCardTheme('golden-vellum')">
+        <span class="theme-color-swatch theme-swatch-golden"></span>
+        <span class="theme-name">زرین و کهن</span>
+       </button>
+       <button type="button" class="studio-theme-card" data-theme="obsidian" onclick="setCardTheme('obsidian')">
+        <span class="theme-color-swatch theme-swatch-obsidian"></span>
+        <span class="theme-name">شب زغالی</span>
+       </button>
+       <button type="button" class="studio-theme-card" data-theme="azure" onclick="setCardTheme('azure')">
+        <span class="theme-color-swatch theme-swatch-azure"></span>
+        <span class="theme-name">لاجوردی و تذهیب</span>
+       </button>
+       <button type="button" class="studio-theme-card" data-theme="ivory" onclick="setCardTheme('ivory')">
+        <span class="theme-color-swatch theme-swatch-ivory"></span>
+        <span class="theme-name">مینیمال عاجی</span>
+       </button>
+       <button type="button" class="studio-theme-card" data-theme="ruby-royal" onclick="setCardTheme('ruby-royal')">
+        <span class="theme-color-swatch theme-swatch-ruby"></span>
+        <span class="theme-name">یاقوت</span>
+        <span class="pro-mini-tag">پلاس</span>
+       </button>
+       <button type="button" class="studio-theme-card" data-theme="turquoise-nishapur" onclick="setCardTheme('turquoise-nishapur')">
+        <span class="theme-color-swatch theme-swatch-turquoise"></span>
+        <span class="theme-name">فیروزه</span>
+        <span class="pro-mini-tag">پلاس</span>
+       </button>
+      </div>
+     </div>
+     <div class="studio-control-group">
+      <div class="studio-label-row">
+       <label class="studio-label" for="cardFontSizeRange">اندازه قلم ابیات</label>
+       <span id="cardFontSizeVal" class="studio-val-badge">۴۲</span>
+      </div>
+      <input type="range" id="cardFontSizeRange" class="studio-range" min="26" max="64" value="42" oninput="updateCardTextSize(this.value)">
+     </div>
+     <div class="studio-control-group">
+      <div class="studio-label-row">
+       <label class="studio-label" for="cardLineSpacingRange">فاصله عمودی ابیات</label>
+       <span id="cardLineSpacingVal" class="studio-val-badge">متوسط</span>
+      </div>
+      <input type="range" id="cardLineSpacingRange" class="studio-range" min="20" max="80" value="40" oninput="updateCardLineSpacing(this.value)">
+     </div>
+     <div class="studio-control-group studio-toggle-row">
+      <label class="studio-label" for="cardShowAuthor">نمایش نام شاعر و اثر</label>
+      <input type="checkbox" id="cardShowAuthor" class="studio-switch" checked onchange="toggleCardAuthor(this.checked)">
+     </div>
+     <div class="studio-control-group studio-toggle-row">
+      <label class="studio-label" for="cardShowWatermark">نشان پایانی «قاف» <span class="pro-mini-tag">حذف با پلاس</span></label>
+      <input type="checkbox" id="cardShowWatermark" class="studio-switch" checked onchange="toggleCardWatermark(this.checked)">
+     </div>
+     <div class="studio-control-group">
+      <label class="studio-label" for="cardVersesText">متن ابیات شعر</label>
+      <textarea id="cardVersesText" class="studio-textarea" rows="3" oninput="updateCardVersesText(this.value)" placeholder="متن شعر..."></textarea>
+     </div>
+     <div class="studio-control-group">
+      <label class="studio-label" for="cardAuthorText">عنوان سخنور و اثر</label>
+      <input type="text" id="cardAuthorText" class="studio-input" oninput="updateCardAuthorText(this.value)" placeholder="حافظ شیرازی">
+     </div>
+    </div>
+   </div>
+   <div class="card-studio-footer">
+    <button type="button" class="studio-btn studio-btn-primary" onclick="exportCardImage('download')">
+     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+     <span>ذخیره تصویر</span>
+    </button>
+    <button type="button" class="studio-btn studio-btn-secondary" onclick="exportCardImage('share')">
+     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+     <span>اشتراک‌گذاری</span>
+    </button>
+   </div>
+  </dialog>
+  <div id="qafToast" class="qaf-toast" role="status" aria-live="polite"></div>
+  <!-- ============================================================
          13. JAVASCRIPT LOGIC & SPA ROUTER
          ============================================================ -->
   <script>
@@ -3067,6 +4750,28 @@ body{overflow-x:hidden!important;}
     currentCat: null,
     currentPoem: null,
     currentPoemIndex: null,
+    currentFaalData: null,
+    faalLoading: false,
+    cardStudioOpen: false,
+    cardRatio: 'story',
+    cardTheme: 'golden-vellum',
+    cardFontSize: 42,
+    cardLineSpacing: 40,
+    cardShowAuthor: true,
+    cardShowWatermark: true,
+    cardVersesText: '',
+    cardAuthorText: '',
+    memorizeMode: false,
+    readerFontSize: 15,
+    qafPlus: false,
+    dailyCouplet: null,
+    activeMood: '',
+    mushairaInit: false,
+    mushairaScore: 0,
+    mushairaStreak: 0,
+    mushairaTarget: 'د',
+    mushairaPlayedIds: [],
+    mushairaBusy: false,
     poetOffset: 0,
     workOffset: 0,
     flatPoemOffset: 0,
@@ -3099,6 +4804,7 @@ body{overflow-x:hidden!important;}
   const ICON_BOOKMARK = '<span class="empty-state-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3.5A1.5 1.5 0 0 1 7.5 2h9A1.5 1.5 0 0 1 18 3.5V21l-6-4-6 4V3.5Z"></path></svg></span>';
 
   const ICON_SVG_BOOKMARK = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3.5A1.5 1.5 0 0 1 7.5 2h9A1.5 1.5 0 0 1 18 3.5V21l-6-4-6 4V3.5Z"></path></svg>';
+  const ICON_SVG_CARD = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>';
   const ICON_SVG_COPY = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
   const ICON_SVG_CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
@@ -3213,6 +4919,8 @@ body{overflow-x:hidden!important;}
 
   async function loadHome(token=qafRouteToken) {
     if (!state.dbReady) return;
+    renderStreakBadge();
+    loadDailyVerse(false, token);
     showLoader('homePoetsGrid','در حال بارگذاری...');
     showLoader('homeWorksGrid','در حال بارگذاری...');
     try {
@@ -3247,11 +4955,14 @@ body{overflow-x:hidden!important;}
     if(!options.fromHistory){const cur=history.state?.qafRoute;if(!cur||cur.view!==route.view||JSON.stringify(cur.params||{})!==JSON.stringify(route.params)) history.pushState({qafRoute:route,qafDepth:(history.state?.qafDepth||0)+1},'',location.href.split('#')[0]+'#'+encodeURIComponent(viewId)+'?'+encodeURIComponent(JSON.stringify(params||{})));}
     document.querySelectorAll('.spa-view').forEach(v=>v.classList.remove('active-view'));target.classList.add('active-view');state.currentView=viewId;
     window.scrollTo({top:0,left:0,behavior:'auto'});
-    closeDrawer(); closeGlobalSearch();
-    const labels={'view-home':'آرشیو ادبیات پارسی','view-poets':'دانشنامه سخنوران','view-works':'گنجینه آثار و دیوان‌ها','view-poet-detail':'اطلاعات سخنور','view-work-hierarchical':'اطلاعات اثر','view-poem-reader':'خوانش اثر','view-search':'نتایج جستجو','view-profile':'بایگانی و نشان‌ها','view-about':'درباره قاف'};if($('topbarSubtext'))$('topbarSubtext').innerText=labels[viewId]||labels['view-home'];
-    document.querySelectorAll('.drawer-nav-item').forEach(el=>el.classList.remove('active'));const navMap={'view-home':'navItem-home','view-poets':'navItem-poets','view-works':'navItem-works','view-profile':'navItem-profile','view-about':'navItem-about'};if(navMap[viewId])$(navMap[viewId])?.classList.add('active');
+    closeDrawer(); closeGlobalSearch(); closeCardStudio();
+    const labels={'view-home':'آرشیو ادبیات پارسی','view-poets':'دانشنامه سخنوران','view-works':'گنجینه آثار و دیوان‌ها','view-poet-detail':'اطلاعات سخنور','view-work-hierarchical':'اطلاعات اثر','view-poem-reader':'خوانش اثر','view-search':'نتایج جستجو','view-profile':'بایگانی و نشان‌ها','view-about':'درباره قاف','view-faal':'فال حافظ شیرازی','view-mushaira':'مشاعره و قافیه‌یاب','view-plus':'قاف پلاس (نسخه حامیان)'};if($('topbarSubtext'))$('topbarSubtext').innerText=labels[viewId]||labels['view-home'];
+    document.querySelectorAll('.drawer-nav-item').forEach(el=>el.classList.remove('active'));const navMap={'view-home':'navItem-home','view-poets':'navItem-poets','view-works':'navItem-works','view-profile':'navItem-profile','view-about':'navItem-about','view-faal':'navItem-faal','view-mushaira':'navItem-mushaira','view-plus':'navItem-plus'};if(navMap[viewId])$(navMap[viewId])?.classList.add('active');
     if(!state.dbReady)return;
     if(viewId==='view-home')loadHome(token);
+    if(viewId==='view-faal')initFaalView(params,token);
+    if(viewId==='view-mushaira')initMushairaView(token);
+    if(viewId==='view-plus')renderPlusState();
     if(viewId==='view-poets'){loadPoets(true,token);ensureFilterOptionsLoaded();}
     if(viewId==='view-works'){loadWorks(true,token);ensureFilterOptionsLoaded();}
     if(viewId==='view-poet-detail'&&params.poetId!=null)loadPoetDetail(Number(params.poetId),token);
@@ -3262,14 +4973,13 @@ body{overflow-x:hidden!important;}
       if(params.scope!=null&&$('scopeSelect'))$('scopeSelect').value=params.scope;
       if(params.poetId!=null&&$('poetSelect'))$('poetSelect').value=String(params.poetId);
       if(params.century!=null&&$('centurySelect'))$('centurySelect').value=String(params.century);
-      // Run the actual search right away — it doesn't need the dropdown
-      // option lists to be populated first. The dropdowns fill in parallel,
-      // and once they do, the search re-runs only if the person's selection
-      // (from params) actually depends on those now-available options.
       performLiveFilter(token);
       ensureFilterOptionsLoaded().then(()=>{if(token!==qafRouteToken)return;refreshCustomSelects();});
     }
-    if(viewId==='view-profile'){renderBookmarks();renderReadingHistory();renderRecentReading();}
+    if(viewId==='view-profile'){
+      if(params.tab==='history'){const b=document.querySelectorAll('#view-profile .workspace-tab-btn')[1];if(b)switchMainTab('history',b);}
+      renderBookmarks();renderReadingHistory();renderRecentReading();
+    }
     closeCustomSelect();
   }
 
@@ -3437,6 +5147,7 @@ body{overflow-x:hidden!important;}
       ]);
       const bm = $('poetBookmarkBtn');
       if (bm) bm.classList.toggle('is-bookmarked', getBookmarks('poet').some(x => String(x.id) === String(id)));
+      updatePoetOfflinePackUI(p.id);
 
       const cats = res.works || res.cats || [];
       $('poetWorksGrid').innerHTML = cats.map(c => `<div class="poet-work-item-card" onclick="navigateTo('view-work-hierarchical',{catId:${Number(c.id)}})"><div class="poet-work-item-title">${esc(c.text || c.title)}</div><div class="poet-work-item-footer"><span>مشاهده اثر</span><span>←</span></div></div>`).join('') || emptyState('اثری ثبت نشده است','برای این سخنور اثری در پایگاه داده یافت نشد.');
@@ -3447,9 +5158,12 @@ body{overflow-x:hidden!important;}
   }
 
   function poemCard(p) {
+    const previewHtml = p.preview
+      ? String(p.preview).split(' / ').map(line => `<div class="hemistich-line">${esc(line)}</div>`).join('')
+      : '<div class="hemistich-line">متن شعر در پایگاه داده موجود است.</div>';
     return `<div class="poem-flat-card" onclick="navigateTo('view-poem-reader',{poemId:${Number(p.poem_id)}})">
       <div class="poem-card-header"><span class="poem-number-badge">${esc(p.title || 'بدون عنوان')}</span></div>
-      <div class="poem-opening-couplet">${p.preview ? `<div class="hemistich-line">${esc(p.preview)}</div>` : '<div class="hemistich-line">متن شعر در پایگاه داده موجود است.</div>'}</div>
+      <div class="poem-opening-couplet">${previewHtml}</div>
       <div class="poem-card-footer"><span class="poem-meta-text">${esc(p.poet_name || p.cat_title || '')}</span><span class="poem-action-link">خوانش ←</span></div>
     </div>`;
   }
@@ -3459,7 +5173,7 @@ body{overflow-x:hidden!important;}
     $('hierWorkMetadata').innerHTML = '';
     showLoader('workChildrenGrid','در حال بارگذاری...');
     try {
-      const res = await apiFetch(`/api/works/${Number(catId)}`);
+      const res = await apiFetch(`/api/works/${Number(catId)}?limit=${PAGE_SIZE}`);
       if (token!==qafRouteToken) return;
       const cat = res.work || res;
       if (!cat) return;
@@ -3498,7 +5212,7 @@ body{overflow-x:hidden!important;}
           state.flatPoemOffset = res.poems.length;
           const list = $('flatPoemsList');
           if (list) list.innerHTML = res.poems.map(poemCard).join('');
-          if ($('flatPoemsLoadMoreBtn')) $('flatPoemsLoadMoreBtn').style.display = res.poems.length === PAGE_SIZE ? 'inline-flex' : 'none';
+          if ($('flatPoemsLoadMoreBtn')) $('flatPoemsLoadMoreBtn').style.display = res.poems.length >= PAGE_SIZE ? 'inline-flex' : 'none';
         } else {
           await loadFlatPoems(true, token);
         }
@@ -3526,14 +5240,15 @@ body{overflow-x:hidden!important;}
     if (q) params.set('q', q);
 
     try {
-      const res = await apiFetch(`/api/works/${catId}?${params.toString()}`);
+      const res = await apiFetch(`/api/works/${catId}/poems?${params.toString()}`);
       if (token !== qafRouteToken || flatSeq !== qafFlatSeq) return;
-      const data = res.poems || (Array.isArray(res) ? res : []);
+      const data = Array.isArray(res) ? res : (res.poems || []);
       const list = $('flatPoemsList');
       if (reset && list) list.innerHTML = '';
       if (list) list.insertAdjacentHTML('beforeend', data.map(poemCard).join(''));
+      if (reset && list && !data.length) list.innerHTML = emptyState('موردی در این اثر یافت نشد', 'واژه دیگری را امتحان کنید.');
       state.flatPoemOffset += data.length;
-      if ($('flatPoemsLoadMoreBtn')) $('flatPoemsLoadMoreBtn').style.display = data.length === PAGE_SIZE ? 'inline-flex' : 'none';
+      if ($('flatPoemsLoadMoreBtn')) $('flatPoemsLoadMoreBtn').style.display = data.length >= PAGE_SIZE ? 'inline-flex' : 'none';
     } catch (e) {
       if (token !== qafRouteToken || flatSeq !== qafFlatSeq) return;
       const list = $('flatPoemsList');
@@ -3554,14 +5269,15 @@ body{overflow-x:hidden!important;}
   }
 
   function setCachedPoem(poemId, data) {
+    const maxCached = state.qafPlus ? 500 : 180;
     try {
       localStorage.setItem(`qaf_cache_poem_${poemId}`, JSON.stringify(data));
       let list = [];
       try { list = JSON.parse(localStorage.getItem('qaf_cached_poems_list') || '[]'); } catch {}
       list = list.filter(id => String(id) !== String(poemId));
       list.unshift(Number(poemId));
-      if (list.length > 100) {
-        const removed = list.splice(100);
+      if (list.length > maxCached) {
+        const removed = list.splice(maxCached);
         removed.forEach(id => {
           try { localStorage.removeItem(`qaf_cache_poem_${id}`); } catch {}
         });
@@ -3570,8 +5286,8 @@ body{overflow-x:hidden!important;}
     } catch (e) {
       try {
         const list = JSON.parse(localStorage.getItem('qaf_cached_poems_list') || '[]');
-        if (list.length > 20) {
-          const removed = list.splice(20);
+        if (list.length > 30) {
+          const removed = list.splice(30);
           removed.forEach(id => {
             try { localStorage.removeItem(`qaf_cache_poem_${id}`); } catch {}
           });
@@ -3585,16 +5301,29 @@ body{overflow-x:hidden!important;}
     let grouped = [];
     if (Array.isArray(verses) && verses.length > 0) {
       if (verses[0].items) {
-        grouped = verses;
-      } else {
-        const byOrder = new Map();
-        verses.forEach(v => {
-          const key = String(v.vorder != null ? v.vorder : 0);
-          if (!byOrder.has(key)) byOrder.set(key, []);
-          byOrder.get(key).push(v);
+        // If legacy cached data had 1 item per group, pair (0,1) and (2,3) on the fly
+        const flat = [];
+        let alreadyPaired = false;
+        verses.forEach(g => {
+          if (g.items && g.items.length > 1) alreadyPaired = true;
+          (g.items || []).forEach(it => flat.push(it));
         });
-        byOrder.forEach((items, key) => grouped.push({ order: key, items }));
+        if (alreadyPaired) return verses;
+        verses = flat;
       }
+      verses.forEach(v => {
+        if (grouped.length > 0) {
+          const last = grouped[grouped.length - 1];
+          if (last.items.length === 1) {
+            const p0 = last.items[0].position;
+            if ((p0 === 0 && v.position === 1) || (p0 === 2 && v.position === 3)) {
+              last.items.push(v);
+              return;
+            }
+          }
+        }
+        grouped.push({ order: v.vorder != null ? v.vorder : 0, items: [v] });
+      });
     }
     return grouped;
   }
@@ -3636,15 +5365,21 @@ body{overflow-x:hidden!important;}
     const markedVerses = new Set(getBookmarks('verse').map(x => String(x.id)));
 
     container.innerHTML = grouped.map((g, i) => {
-      const lines = (g.items || []).map(v => `<div class="hemistich-line">${esc(v.text)}</div>`).join('');
+      const items = g.items || [];
+      const isCouplet = items.length === 2;
+      const lines = items.map((v, idx) => {
+        const cloze = state.memorizeMode && isCouplet && idx === 1;
+        return `<div class="hemistich-line ${cloze ? 'is-cloze' : ''}" ${cloze ? 'onclick="this.classList.toggle(\'is-revealed\')" title="ضربه برای نمایش مصراع"' : ''}>${esc(v.text)}</div>`;
+      }).join('');
       const verseKey = `${poemId}:${g.order}`;
       const marked = markedVerses.has(verseKey);
       return `<article class="verse-block ${marked?'is-bookmarked':''}" data-verse-id="${esc(verseKey)}">
         <div class="verse-meta-bar"><span class="verse-number-badge">${faNum(i+1)}</span>
           <div class="verse-micro-actions">
           <button type="button" aria-label="نشان کردن بیت" class="verse-action-link-btn ${marked?'is-active':''}" onclick="toggleVerseBookmark(this,'${esc(verseKey)}')">${ICON_SVG_BOOKMARK}</button>
+          <button type="button" aria-label="کارت‌ساز" class="verse-action-link-btn" onclick="openCardStudioForVerse(this)">${ICON_SVG_CARD}</button>
           <button type="button" aria-label="کپی بیت" class="verse-action-link-btn" onclick="copySingleVerse(this)">${ICON_SVG_COPY}</button></div>
-        </div><div class="verse-content-layout">${lines}</div>
+        </div><div class="verse-content-layout ${isCouplet ? 'is-couplet' : ''}">${lines}</div>
       </article>`;
     }).join('') || emptyState('متنی برای این شعر ثبت نشده است','این شعر بیتی ندارد.');
 
@@ -3657,6 +5392,7 @@ body{overflow-x:hidden!important;}
       updatePoemPagination(poemIds);
     }
     recordLastReading(poem, grouped);
+    recordDailyStreak();
   }
 
   function updatePoemPagination(all) {
@@ -3824,11 +5560,30 @@ body{overflow-x:hidden!important;}
   }
   function resetGlobalSearchFilters(){ if($('globalSearchInput')) $('globalSearchInput').value=''; if($('globalScopeFilter')) $('globalScopeFilter').value='all'; if($('globalPoetFilter')) $('globalPoetFilter').value=''; if($('globalCenturyFilter')) $('globalCenturyFilter').value=''; }
 
-  function applyTheme(theme){
+  let qafToastTimer = null;
+  function showToast(msg) {
+    const el = $('qafToast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('is-visible');
+    clearTimeout(qafToastTimer);
+    qafToastTimer = setTimeout(() => el.classList.remove('is-visible'), 2600);
+  }
+
+  function applyTheme(theme, persist = false){
     const root=document.documentElement;
     const target=theme==='dark'?'dark':'light';
     root.setAttribute('data-theme',target);
-    try{localStorage.setItem('theme',target);}catch{}
+    if(persist){try{localStorage.setItem('theme',target);}catch{}}
+    const meta=$('themeColorMeta');
+    if(meta)meta.setAttribute('content',target==='dark'?'#141312':'#FAF9F6');
+    try{
+      const sb=window.Capacitor?.Plugins?.StatusBar;
+      if(sb){
+        sb.setStyle?.({style:target==='dark'?'DARK':'LIGHT'});
+        sb.setBackgroundColor?.({color:target==='dark'?'#141312':'#FAF9F6'});
+      }
+    }catch{}
     document.body?.style.removeProperty('color');
     document.body?.style.removeProperty('background-color');
     document.querySelectorAll('.qaf-custom-select').forEach(btn=>btn.blur?.());
@@ -3836,17 +5591,760 @@ body{overflow-x:hidden!important;}
   }
   function initTheme(){
     let saved=''; try{saved=localStorage.getItem('theme')||'';}catch{}
-    const theme=saved==='dark'||saved==='light'?saved:(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light');
-    applyTheme(theme);
+    const mq=window.matchMedia?.('(prefers-color-scheme: dark)');
+    const theme=saved==='dark'||saved==='light'?saved:(mq?.matches?'dark':'light');
+    applyTheme(theme,false);
+    mq?.addEventListener?.('change',e=>{
+      let curSaved=''; try{curSaved=localStorage.getItem('theme')||'';}catch{}
+      if(curSaved!=='dark'&&curSaved!=='light')applyTheme(e.matches?'dark':'light',false);
+    });
   }
   function toggleTheme(){
     const current=document.documentElement.getAttribute('data-theme')||'light';
-    applyTheme(current==='dark'?'light':'dark');
+    applyTheme(current==='dark'?'light':'dark',true);
+  }
+
+  // Reader Typography & Memorization Cloze Mode
+  function initReaderPrefs(){
+    try{
+      const sz=Number(localStorage.getItem('qaf_reader_font_size'));
+      if(sz>=12&&sz<=24){state.readerFontSize=sz;document.documentElement.style.setProperty('--reader-verse-size',sz+'px');}
+      state.qafPlus=localStorage.getItem('qaf_plus_active')==='1';
+    }catch{}
+  }
+  function adjustReaderFontSize(delta){
+    const next=Math.max(12,Math.min(24,(state.readerFontSize||15)+delta));
+    state.readerFontSize=next;
+    document.documentElement.style.setProperty('--reader-verse-size',next+'px');
+    try{localStorage.setItem('qaf_reader_font_size',String(next));}catch{}
+    showToast(`اندازه قلم مطالعه: ${faNum(next)}`);
+  }
+  function toggleMemorizeMode(){
+    state.memorizeMode=!state.memorizeMode;
+    $('memorizeToggleBtn')?.classList.toggle('is-active',state.memorizeMode);
+    document.querySelectorAll('#versesContainer .verse-content-layout.is-couplet').forEach(row=>{
+      const second=row.children[1];
+      if(!second)return;
+      if(state.memorizeMode){
+        second.classList.add('is-cloze');
+        second.classList.remove('is-revealed');
+        second.onclick=()=>second.classList.toggle('is-revealed');
+      }else{
+        second.classList.remove('is-cloze','is-revealed');
+        second.onclick=null;
+      }
+    });
+    showToast(state.memorizeMode?'حالت حفظ شعر فعال شد (روی مصراع محو ضربه بزنید)':'حالت حفظ شعر غیرفعال شد');
   }
 
   function toggleZenMode(enable){ document.body.classList.toggle('zen-active',enable); $('zenToggleBtn')?.classList.toggle('is-active',enable); }
   async function copySingleVerse(btn){ const block=btn.closest('.verse-block'); const text=Array.from(block.querySelectorAll('.hemistich-line')).map(x=>x.innerText.trim()).join(' / '); try{await navigator.clipboard.writeText(text);}catch{} btn.innerHTML=ICON_SVG_CHECK; btn.classList.add('is-active'); setTimeout(()=>{btn.innerHTML=ICON_SVG_COPY; btn.classList.remove('is-active');},1200); }
-  async function copyFullPoem(btn){ const title=$('poemMainHeading')?.innerText||''; const author=$('poemSubAuthor')?.innerText||''; const verses=Array.from(document.querySelectorAll('#versesContainer .verse-block')).map(b=>Array.from(b.querySelectorAll('.hemistich-line')).map(x=>x.innerText.trim()).join('\n')).join('\n\n'); try{await navigator.clipboard.writeText(`«${title}»\n${author}\n\n${verses}`);}catch{} btn.classList.add('is-active'); setTimeout(()=>btn.classList.remove('is-active'),1200); }
+  async function copyFullPoem(btn){ const title=$('poemMainHeading')?.innerText||''; const author=$('poemSubAuthor')?.innerText||''; const verses=Array.from(document.querySelectorAll('#versesContainer .verse-block')).map(b=>Array.from(b.querySelectorAll('.hemistich-line')).map(x=>x.innerText.trim()).join('\n')).join('\n\n'); try{await navigator.clipboard.writeText(`«${title}»\n${author}\n\n${verses}`);}catch{} btn.classList.add('is-active'); setTimeout(()=>btn.classList.remove('is-active'),1200); showToast('متن کامل شعر کپی شد'); }
+
+  // ==========================================================================
+  // DAILY STREAK, DAILY MASTERPIECE & MOOD DISCOVERY
+  // ==========================================================================
+  function todayIsoKey(){
+    const d=new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+  function getReadingStreak(){
+    try{return JSON.parse(localStorage.getItem('qaf_reading_streak')||'{"count":0,"last":""}');}catch{return{count:0,last:''};}
+  }
+  function recordDailyStreak(){
+    const today=todayIsoKey();
+    const st=getReadingStreak();
+    if(st.last===today)return;
+    const y=new Date(); y.setDate(y.getDate()-1);
+    const yKey=`${y.getFullYear()}-${String(y.getMonth()+1).padStart(2,'0')}-${String(y.getDate()).padStart(2,'0')}`;
+    const nextCount=(st.last===yKey?(st.count||0)+1:1);
+    try{localStorage.setItem('qaf_reading_streak',JSON.stringify({count:nextCount,last:today}));}catch{}
+    renderStreakBadge();
+  }
+  function renderStreakBadge(){
+    const el=$('readingStreakBadge');
+    if(!el)return;
+    const st=getReadingStreak();
+    el.textContent=st.count>0?`✦ ${faNum(st.count)} روز پیوسته با شعر`:'آغاز انس روزانه با شعر';
+  }
+
+  function renderDailyMasterpieceCard(c, isRandom=false){
+    const box=$('dailyMasterpieceContainer');
+    if(!box||!c)return;
+    state.dailyCouplet=c;
+    box.innerHTML=`<div class="daily-masterpiece-card">
+      <div class="daily-top-meta">
+        <span class="daily-badge-label">❖ ${isRandom?'تفأل لحظه‌ای در گنجینه':'انتخاب امروز قاف'}</span>
+        <span style="font-size:11px;color:var(--stone);">${esc(c.cat_title||'')}</span>
+      </div>
+      <div class="daily-couplet-lines">
+        <div class="daily-couplet-line">${esc(c.hemistich_1)}</div>
+        <div class="daily-couplet-line">${esc(c.hemistich_2)}</div>
+      </div>
+      <div class="daily-card-footer">
+        <span class="daily-poet-attr" onclick="navigateTo('view-poet-detail',{poetId:${Number(c.poet_id)}})"><strong>${esc(c.poet_name)}</strong> • ${esc(c.poem_title||'')}</span>
+        <div class="daily-actions-cluster">
+          <button type="button" class="daily-mini-btn is-gold" onclick="openCardStudioFromDaily()">${ICON_SVG_CARD}<span>استوری</span></button>
+          <button type="button" class="daily-mini-btn" onclick="loadDailyVerse(true)">بیت دیگر ↻</button>
+          <button type="button" class="daily-mini-btn" onclick="navigateTo('view-poem-reader',{poemId:${Number(c.poem_id)}})">خوانش ←</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  async function loadDailyVerse(random=false, token=qafRouteToken){
+    const box=$('dailyMasterpieceContainer');
+    if(!box)return;
+    if(!random&&state.dailyCouplet){renderDailyMasterpieceCard(state.dailyCouplet,false);return;}
+    try{
+      const res=await apiFetch(random?'/api/daily?random=1':'/api/daily');
+      if(token!==qafRouteToken)return;
+      if(res?.couplet){
+        if(!random){try{localStorage.setItem('qaf_cached_daily',JSON.stringify(res.couplet));}catch{}}
+        renderDailyMasterpieceCard(res.couplet,random);
+      }
+    }catch{
+      try{
+        const cached=JSON.parse(localStorage.getItem('qaf_cached_daily')||'null');
+        if(cached)renderDailyMasterpieceCard(cached,false);
+      }catch{}
+    }
+  }
+  function openCardStudioFromDaily(){
+    const c=state.dailyCouplet;
+    if(!c)return;
+    openCardStudio(`${c.hemistich_1}\n${c.hemistich_2}`, `${c.poet_name} • ${c.poem_title||c.cat_title||''}`);
+  }
+
+  function coupletDiscoveryCard(c){
+    const vText=esc(`${c.hemistich_1}\n${c.hemistich_2}`);
+    const aText=esc(`${c.poet_name} • ${c.poem_title||c.cat_title||''}`);
+    return `<div class="poem-flat-card" onclick="navigateTo('view-poem-reader',{poemId:${Number(c.poem_id)}})">
+      <div class="poem-card-header"><span class="poem-number-badge">${esc(c.poet_name)}</span><span>${esc(c.poem_title||'')}</span></div>
+      <div class="poem-opening-couplet"><div class="hemistich-line">${esc(c.hemistich_1)}</div><div class="hemistich-line">${esc(c.hemistich_2)}</div></div>
+      <div class="poem-card-footer">
+        <button type="button" class="daily-mini-btn is-gold" data-verses="${vText}" data-author="${aText}" onclick="event.stopPropagation();openCardStudioFromDataset(this)">${ICON_SVG_CARD}<span>ساخت کارت استوری</span></button>
+        <span class="poem-action-link">خوانش کامل ←</span>
+      </div>
+    </div>`;
+  }
+
+  async function selectDiscoverMood(mood, btn){
+    const stream=$('moodResultsStream');
+    if(!stream)return;
+    if(state.activeMood===mood&&stream.style.display!=='none'&&!btn){return;}
+    state.activeMood=mood;
+    document.querySelectorAll('#moodChipsBar .mood-chip-btn').forEach(b=>b.classList.toggle('active',b.dataset.mood===mood));
+    stream.style.display='flex';
+    stream.innerHTML=inlineLoader('در حال یافتن ابیات متناسب با حال‌وهوای شما...');
+    try{
+      const res=await apiFetch(`/api/discover?mood=${encodeURIComponent(mood)}&limit=4`);
+      const list=res?.couplets||[];
+      stream.innerHTML=list.map(coupletDiscoveryCard).join('')||emptyState('بیتی یافت نشد','دوباره تلاش کنید.');
+    }catch{
+      stream.innerHTML=emptyState('عدم ارتباط با سرور','برای دریافت پیشنهادهای حال‌وهوا به اینترنت متصل شوید.');
+    }
+  }
+
+  // ==========================================================================
+  // CEREMONIAL FAAL-E HAFEZ
+  // ==========================================================================
+  function initFaalView(params={}, token=qafRouteToken){
+    if(params?.poemId){
+      performFaalCeremony(Number(params.poemId), token);
+      return;
+    }
+    if(!state.currentFaalData){
+      resetFaalView();
+    }
+  }
+
+  function resetFaalView(){
+    state.faalLoading=false;
+    if($('faalNiyyatStep'))$('faalNiyyatStep').style.display='';
+    if($('faalResultStep'))$('faalResultStep').style.display='none';
+    if($('faalCeremonyStatus'))$('faalCeremonyStatus').style.display='none';
+    $('faalMedallion')?.classList.remove('is-opening');
+    if($('openFaalTriggerBtn'))$('openFaalTriggerBtn').disabled=false;
+  }
+
+  async function performFaalCeremony(targetPoemId=0, token=qafRouteToken){
+    if(state.faalLoading)return;
+    state.faalLoading=true;
+    $('faalMedallion')?.classList.add('is-opening');
+    if($('faalCeremonyStatus'))$('faalCeremonyStatus').style.display='flex';
+    if($('openFaalTriggerBtn'))$('openFaalTriggerBtn').disabled=true;
+
+    try{
+      const endpoint=targetPoemId>0?`/api/faal?id=${Number(targetPoemId)}`:'/api/faal';
+      const [res] = await Promise.all([
+        apiFetch(endpoint),
+        new Promise(r=>setTimeout(r,550))
+      ]);
+      if(token!==qafRouteToken){state.faalLoading=false;return;}
+      state.currentFaalData=res;
+      if(res?.poem?.poem_id)setCachedPoem(res.poem.poem_id,res);
+
+      if($('faalPoetName'))$('faalPoetName').innerText=res.poem?.poet_name||'حافظ شیرازی';
+      if($('faalPoemTitle'))$('faalPoemTitle').innerText=res.poem?.title||'غزل حافظ';
+
+      const grouped=formatPoemVerses(res.verses||[]);
+      if($('faalVersesContainer')){
+        $('faalVersesContainer').innerHTML=grouped.map((g,idx)=>{
+          const lines=(g.items||[]).map(it=>`<div class="faal-verse-line">${esc(it.text)}</div>`).join('');
+          return `<div class="faal-verse-card"><div class="faal-verse-num">بیت ${faNum(idx+1)}</div>${lines}</div>`;
+        }).join('');
+      }
+      if($('faalInterpretationText')){
+        const paragraphs=String(res.interpretation||'').split(/\n+/).filter(Boolean);
+        $('faalInterpretationText').innerHTML=paragraphs.map(p=>`<p style="margin-bottom:10px;">${esc(p)}</p>`).join('');
+      }
+      $('faalInterpretationCard')?.classList.add('is-open');
+      if($('faalNiyyatStep'))$('faalNiyyatStep').style.display='none';
+      if($('faalResultStep'))$('faalResultStep').style.display='flex';
+      recordDailyStreak();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }catch(e){
+      showToast('ارتباط با سرور برای دریافت فال برقرار نشد.');
+    }finally{
+      state.faalLoading=false;
+      $('faalMedallion')?.classList.remove('is-opening');
+      if($('faalCeremonyStatus'))$('faalCeremonyStatus').style.display='none';
+      if($('openFaalTriggerBtn'))$('openFaalTriggerBtn').disabled=false;
+    }
+  }
+
+  function toggleFaalInterpretation(){
+    $('faalInterpretationCard')?.classList.toggle('is-open');
+  }
+  function openFaalInReader(){
+    const pid=state.currentFaalData?.poem?.poem_id;
+    if(pid)navigateTo('view-poem-reader',{poemId:Number(pid)});
+  }
+  function openCardStudioFromFaal(){
+    const d=state.currentFaalData;
+    if(!d)return;
+    const grouped=formatPoemVerses(d.verses||[]);
+    const sample=grouped.slice(0,2).map(g=>(g.items||[]).map(x=>x.text).join('\n')).join('\n\n');
+    openCardStudio(sample, `فال حافظ • ${d.poem?.title||'دیوان حافظ'}`);
+  }
+
+  // ==========================================================================
+  // STORY & QUOTE CARD STUDIO (NATIVE <dialog> + HIGH-RES CANVAS)
+  // ==========================================================================
+  const CARD_THEMES = {
+    'golden-vellum': { bg1: '#F7EFE0', bg2: '#E5D3B3', ink: '#1C1915', accent: '#9E7B22', frame: 'rgba(158,123,34,0.55)', pro: false },
+    'obsidian':      { bg1: '#1B1917', bg2: '#0E0D0C', ink: '#EFEAD8', accent: '#D4B465', frame: 'rgba(212,180,101,0.5)', pro: false },
+    'azure':         { bg1: '#102A45', bg2: '#071526', ink: '#F4F1EA', accent: '#DFBE6F', frame: 'rgba(223,190,111,0.5)', pro: false },
+    'ivory':         { bg1: '#FAF9F6', bg2: '#EFECE4', ink: '#1C1C1C', accent: '#8A7336', frame: 'rgba(138,115,54,0.45)', pro: false },
+    'ruby-royal':    { bg1: '#42101A', bg2: '#20060B', ink: '#F7EFE5', accent: '#E5C168', frame: 'rgba(229,193,104,0.55)', pro: true },
+    'turquoise-nishapur': { bg1: '#0E444A', bg2: '#062226', ink: '#F1F8F7', accent: '#E2C275', frame: 'rgba(226,194,117,0.55)', pro: true }
+  };
+
+  function openCardStudio(versesText, authorText){
+    const dlg=$('cardStudioModal');
+    if(!dlg)return;
+    state.cardVersesText=String(versesText||'').trim();
+    state.cardAuthorText=String(authorText||'').trim();
+    if($('cardVersesText'))$('cardVersesText').value=state.cardVersesText;
+    if($('cardAuthorText'))$('cardAuthorText').value=state.cardAuthorText;
+    if($('cardShowWatermark'))$('cardShowWatermark').checked=state.cardShowWatermark;
+    state.cardStudioOpen=true;
+    if(!dlg.open){
+      try{dlg.showModal();}catch{dlg.setAttribute('open','');}
+    }
+    renderCardCanvas();
+    if(document.fonts?.ready){document.fonts.ready.then(()=>renderCardCanvas()).catch(()=>{});}
+  }
+
+  function closeCardStudio(){
+    const dlg=$('cardStudioModal');
+    state.cardStudioOpen=false;
+    if(dlg?.open){
+      try{dlg.close();}catch{dlg.removeAttribute('open');}
+    }
+  }
+
+  function openCardStudioForVerse(btn){
+    const block=btn?.closest('.verse-block');
+    if(!block)return;
+    const lines=Array.from(block.querySelectorAll('.hemistich-line')).map(el=>el.innerText.trim()).filter(Boolean).join('\n');
+    const poet=state.currentPoem?.poet_name||'';
+    const title=state.currentPoem?.title||'';
+    openCardStudio(lines, [poet,title].filter(Boolean).join(' • '));
+  }
+
+  function openCardStudioFromDataset(btn){
+    if(!btn)return;
+    openCardStudio(btn.dataset.verses||'', btn.dataset.author||'');
+  }
+
+  function setCardRatio(ratio){
+    state.cardRatio=ratio==='square'?'square':'story';
+    $('btnRatioStory')?.classList.toggle('active',state.cardRatio==='story');
+    $('btnRatioSquare')?.classList.toggle('active',state.cardRatio==='square');
+    const canvas=$('cardCanvas');
+    if(canvas){
+      canvas.width=1080;
+      canvas.height=state.cardRatio==='square'?1080:1920;
+    }
+    renderCardCanvas();
+  }
+
+  function setCardTheme(themeKey){
+    const spec=CARD_THEMES[themeKey];
+    if(!spec)return;
+    if(spec.pro&&!state.qafPlus){
+      showToast('این پوسته سلطنتی ویژه «قاف پلاس» است. از منو فعال کنید!');
+      return;
+    }
+    state.cardTheme=themeKey;
+    document.querySelectorAll('.studio-theme-card').forEach(el=>el.classList.toggle('active',el.dataset.theme===themeKey));
+    renderCardCanvas();
+  }
+
+  function updateCardTextSize(val){
+    state.cardFontSize=Number(val)||42;
+    if($('cardFontSizeVal'))$('cardFontSizeVal').innerText=faNum(state.cardFontSize);
+    renderCardCanvas();
+  }
+
+  function updateCardLineSpacing(val){
+    const n=Number(val)||40;
+    state.cardLineSpacing=n;
+    if($('cardLineSpacingVal'))$('cardLineSpacingVal').innerText=n<32?'فشرده':n>55?'گشوده':'متوسط';
+    renderCardCanvas();
+  }
+
+  function toggleCardAuthor(checked){
+    state.cardShowAuthor=!!checked;
+    renderCardCanvas();
+  }
+
+  function toggleCardWatermark(checked){
+    if(!checked&&!state.qafPlus){
+      if($('cardShowWatermark'))$('cardShowWatermark').checked=true;
+      showToast('حذف نشان قاف ویژه حامیان «قاف پلاس» است.');
+      return;
+    }
+    state.cardShowWatermark=!!checked;
+    renderCardCanvas();
+  }
+
+  function updateCardVersesText(val){ state.cardVersesText=val; renderCardCanvas(); }
+  function updateCardAuthorText(val){ state.cardAuthorText=val; renderCardCanvas(); }
+
+  function wrapCanvasLine(ctx, text, maxWidth){
+    const words=String(text||'').trim().split(/\s+/).filter(Boolean);
+    if(!words.length)return [''];
+    const lines=[];
+    let cur=words[0];
+    for(let i=1;i<words.length;i++){
+      const test=cur+' '+words[i];
+      if(ctx.measureText(test).width<=maxWidth)cur=test;
+      else{lines.push(cur);cur=words[i];}
+    }
+    lines.push(cur);
+    return lines;
+  }
+
+  function drawCornerShamseh(ctx, x, y, size, color){
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.strokeStyle=color;
+    ctx.lineWidth=2;
+    for(let a=0;a<2;a++){
+      ctx.save();
+      ctx.rotate((a*Math.PI)/4);
+      ctx.strokeRect(-size/2,-size/2,size,size);
+      ctx.restore();
+    }
+    ctx.beginPath();
+    ctx.arc(0,0,size*0.24,0,Math.PI*2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function renderCardCanvas(){
+    const canvas=$('cardCanvas');
+    if(!canvas)return;
+    const ctx=canvas.getContext('2d');
+    if(!ctx)return;
+    const W=canvas.width, H=canvas.height;
+    const theme=CARD_THEMES[state.cardTheme]||CARD_THEMES['golden-vellum'];
+
+    // 1. Rich architectural gradient background
+    const grad=ctx.createRadialGradient(W*0.5,H*0.38,W*0.08,W*0.5,H*0.5,Math.max(W,H)*0.78);
+    grad.addColorStop(0,theme.bg1);
+    grad.addColorStop(1,theme.bg2);
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,0,W,H);
+
+    // 2. Double Tazhib Frame & Corner Shamsehs
+    const pad=64;
+    ctx.strokeStyle=theme.frame;
+    ctx.lineWidth=3;
+    ctx.strokeRect(pad,pad,W-pad*2,H-pad*2);
+    ctx.lineWidth=1.2;
+    ctx.strokeRect(pad+16,pad+16,W-(pad+16)*2,H-(pad+16)*2);
+
+    drawCornerShamseh(ctx,pad+16,pad+16,28,theme.accent);
+    drawCornerShamseh(ctx,W-pad-16,pad+16,28,theme.accent);
+    drawCornerShamseh(ctx,pad+16,H-pad-16,28,theme.accent);
+    drawCornerShamseh(ctx,W-pad-16,H-pad-16,28,theme.accent);
+
+    ctx.direction='rtl';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+
+    // 3. Top Crest Monogram
+    ctx.fillStyle=theme.accent;
+    ctx.font='600 44px Arad, sans-serif';
+    ctx.fillText('ق', W/2, pad+78);
+
+    // 4. Verses Layout
+    const fSize=state.cardFontSize||42;
+    const extraGap=state.cardLineSpacing||40;
+    ctx.font=`500 ${fSize}px Arad, sans-serif`;
+    ctx.fillStyle=theme.ink;
+
+    const maxTextW=W-220;
+    const rawLines=String(state.cardVersesText||'').split('\n');
+    const blocks=[];
+    rawLines.forEach(raw=>{
+      if(!raw.trim()){blocks.push({spacer:true});return;}
+      wrapCanvasLine(ctx,raw,maxTextW).forEach(wl=>blocks.push({text:wl}));
+    });
+
+    const lineH=fSize+extraGap;
+    const totalH=blocks.reduce((acc,b)=>acc+(b.spacer?lineH*0.55:lineH),0);
+    let curY=(H/2)-(totalH/2)+(lineH/2)-(state.cardShowAuthor?24:0);
+
+    blocks.forEach(b=>{
+      if(b.spacer){curY+=lineH*0.55;return;}
+      ctx.fillText(b.text, W/2, curY);
+      curY+=lineH;
+    });
+
+    // 5. Ornamental Divider + Poet Attribution
+    if(state.cardShowAuthor&&state.cardAuthorText.trim()){
+      const divY=curY+22;
+      ctx.strokeStyle=theme.frame;
+      ctx.lineWidth=1.5;
+      ctx.beginPath();
+      ctx.moveTo(W/2-110,divY);
+      ctx.lineTo(W/2-16,divY);
+      ctx.moveTo(W/2+16,divY);
+      ctx.lineTo(W/2+110,divY);
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(W/2,divY);
+      ctx.rotate(Math.PI/4);
+      ctx.fillStyle=theme.accent;
+      ctx.fillRect(-5,-5,10,10);
+      ctx.restore();
+
+      ctx.fillStyle=theme.accent;
+      ctx.font=`600 ${Math.max(24,Math.round(fSize*0.66))}px Arad, sans-serif`;
+      ctx.fillText(state.cardAuthorText.trim(), W/2, divY+52);
+    }
+
+    // 6. Qaf Colophon Watermark
+    if(state.cardShowWatermark){
+      ctx.fillStyle=theme.accent;
+      ctx.globalAlpha=0.78;
+      ctx.font='500 23px Arad, sans-serif';
+      ctx.fillText('قاف • آرشیو ادبیات پارسی', W/2, H-pad-46);
+      ctx.globalAlpha=1;
+    }
+  }
+
+  async function exportCardImage(mode='download'){
+    renderCardCanvas();
+    const canvas=$('cardCanvas');
+    if(!canvas)return;
+    const dataUrl=canvas.toDataURL('image/png');
+    const fileName=`qaf-poem-${Date.now()}.png`;
+
+    // Native Capacitor Share / Filesystem support
+    const fsPlugin=window.Capacitor?.Plugins?.Filesystem;
+    const sharePlugin=window.Capacitor?.Plugins?.Share;
+    if(mode==='share'&&fsPlugin?.writeFile&&sharePlugin?.share){
+      try{
+        const base64=dataUrl.split(',')[1];
+        const saved=await fsPlugin.writeFile({path:fileName,data:base64,directory:'CACHE'});
+        await sharePlugin.share({title:'قاف — آرشیو ادبیات پارسی',files:[saved.uri]});
+        return;
+      }catch{}
+    }
+
+    // Web Share API Level 2 (files)
+    if(mode==='share'&&navigator.canShare){
+      try{
+        const blob=await (await fetch(dataUrl)).blob();
+        const file=new File([blob],fileName,{type:'image/png'});
+        if(navigator.canShare({files:[file]})){
+          await navigator.share({title:'قاف',files:[file]});
+          return;
+        }
+      }catch{}
+    }
+
+    // Direct Download Fallback
+    const a=document.createElement('a');
+    a.href=dataUrl;
+    a.download=fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('تصویر با کیفیت بالا ذخیره شد');
+  }
+
+  // ==========================================================================
+  // INTERACTIVE MUSHAIRA DUEL & RHYME STUDIO
+  // ==========================================================================
+  const PERSIAN_ALPHABET = ['ا','ب','پ','ت','ث','ج','چ','ح','خ','د','ذ','ر','ز','ژ','س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ک','گ','ل','م','ن','و','ه','ی'];
+
+  function extractFirstPersianChar(str){
+    for(const ch of String(str||'')){
+      if('آأإٱا'.includes(ch))return 'ا';
+      if('يىئ'.includes(ch))return 'ی';
+      if(ch==='ك')return 'ک';
+      if('ةۀ'.includes(ch))return 'ه';
+      if(ch==='ؤ')return 'و';
+      if(PERSIAN_ALPHABET.includes(ch))return ch;
+    }
+    return '';
+  }
+
+  function initMushairaView(token=qafRouteToken){
+    const grid=$('alphabetPickerGrid');
+    if(grid&&!grid.children.length){
+      grid.innerHTML=PERSIAN_ALPHABET.map(ch=>`<button type="button" class="alpha-letter-btn" data-letter="${ch}" onclick="loadAlphabetCouplets('${ch}',this)">${ch}</button>`).join('');
+    }
+    if(!state.mushairaInit){
+      state.mushairaInit=true;
+      startNewMushairaGame(token);
+    }
+  }
+
+  function switchMushairaTab(tab, btn){
+    document.querySelectorAll('#view-mushaira .workspace-tab-btn').forEach(b=>b.classList.remove('active'));
+    btn?.classList.add('active');
+    $('mushPanelDuel')?.classList.toggle('active',tab==='duel');
+    $('mushPanelRhyme')?.classList.toggle('active',tab==='rhyme');
+  }
+
+  function appendMushairaTurn(role, c, customText=''){
+    const feed=$('mushairaFeed');
+    if(!feed)return;
+    const html = role==='qaf' && c
+      ? `<div class="mushaira-turn-card is-qaf">
+          <div class="mushaira-turn-head"><strong>نوبت قاف (${esc(c.poet_name)})</strong><span>حرف پایانی: «${esc(c.end_letter)}»</span></div>
+          <div class="hemistich-line">${esc(c.hemistich_1)}</div>
+          <div class="hemistich-line">${esc(c.hemistich_2)}</div>
+        </div>`
+      : `<div class="mushaira-turn-card is-user">
+          <div class="mushaira-turn-head"><strong>بیت شما</strong><span>امتیاز ثبت شد ✓</span></div>
+          <div class="hemistich-line">${esc(customText)}</div>
+        </div>`;
+    feed.insertAdjacentHTML('beforeend',html);
+    feed.scrollTop=feed.scrollHeight;
+  }
+
+  function syncMushairaHud(){
+    if($('mushairaScoreVal'))$('mushairaScoreVal').innerText=faNum(state.mushairaScore);
+    if($('mushairaStreakVal'))$('mushairaStreakVal').innerText=faNum(state.mushairaStreak);
+    if($('mushairaTargetLetter'))$('mushairaTargetLetter').innerText=state.mushairaTarget||'د';
+  }
+
+  async function startNewMushairaGame(token=qafRouteToken){
+    state.mushairaScore=0;
+    state.mushairaStreak=0;
+    state.mushairaPlayedIds=[];
+    if($('mushairaFeed'))$('mushairaFeed').innerHTML=inlineLoader('قاف در حال آغاز مشاعره...');
+    if($('mushairaHintList'))$('mushairaHintList').style.display='none';
+    if($('mushairaUserInput'))$('mushairaUserInput').value='';
+    try{
+      const res=await apiFetch('/api/mushaira?limit=1');
+      if(token!==qafRouteToken)return;
+      if($('mushairaFeed'))$('mushairaFeed').innerHTML='';
+      if(res?.reply){
+        state.mushairaPlayedIds.push(res.reply.poem_id);
+        state.mushairaTarget=res.reply.end_letter||'د';
+        appendMushairaTurn('qaf',res.reply);
+      }
+      syncMushairaHud();
+    }catch{
+      if($('mushairaFeed'))$('mushairaFeed').innerHTML=emptyState('عدم ارتباط با سرور','برای شروع مشاعره هوشمند به اینترنت متصل شوید.');
+    }
+  }
+
+  async function submitMushairaTurn(){
+    if(state.mushairaBusy)return;
+    const inp=$('mushairaUserInput');
+    const text=(inp?.value||'').trim();
+    if(text.length<8){showToast('لطفاً یک بیت کامل وارد کنید.');return;}
+    const first=extractFirstPersianChar(text);
+    if(first!==state.mushairaTarget){
+      showToast(`بیت شما باید با حرف «${state.mushairaTarget}» آغاز شود!`);
+      return;
+    }
+    state.mushairaBusy=true;
+    try{
+      const excl=state.mushairaPlayedIds.slice(-30).join(',');
+      const res=await apiFetch(`/api/mushaira?user_verse=${encodeURIComponent(text)}&exclude=${encodeURIComponent(excl)}&limit=2`);
+      const bonus=res?.verified_in_archive?15:10;
+      state.mushairaScore+=bonus;
+      state.mushairaStreak+=1;
+      appendMushairaTurn('user',null,text);
+      if(inp)inp.value='';
+      if($('mushairaHintList'))$('mushairaHintList').style.display='none';
+      if(res?.reply){
+        state.mushairaPlayedIds.push(res.reply.poem_id);
+        state.mushairaTarget=res.reply.end_letter||'د';
+        appendMushairaTurn('qaf',res.reply);
+      }
+      syncMushairaHud();
+      recordDailyStreak();
+      showToast(res?.verified_in_archive?'آفرین! بیت در گنجینه تأیید شد (+۱۵ امتیاز)':'بیت پذیرفته شد (+۱۰ امتیاز)');
+    }catch{
+      showToast('خطا در ارسال نوبت مشاعره.');
+    }finally{
+      state.mushairaBusy=false;
+    }
+  }
+
+  async function requestMushairaHint(){
+    const list=$('mushairaHintList');
+    if(!list)return;
+    list.style.display='flex';
+    list.innerHTML=inlineLoader(`در حال جست‌وجوی ابیات با حرف «${state.mushairaTarget}»...`);
+    try{
+      const excl=state.mushairaPlayedIds.slice(-30).join(',');
+      const res=await apiFetch(`/api/mushaira?letter=${encodeURIComponent(state.mushairaTarget)}&exclude=${encodeURIComponent(excl)}&limit=3`);
+      const items=res?.suggestions||[];
+      list.innerHTML=items.map(c=>{
+        const full=esc(`${c.hemistich_1} / ${c.hemistich_2}`);
+        return `<div class="poem-flat-card" data-couplet="${full}" onclick="useMushairaSuggestion(this)">
+          <div class="poem-card-header"><span class="poem-number-badge">${esc(c.poet_name)}</span><span>انتخاب این بیت ←</span></div>
+          <div class="poem-opening-couplet"><div class="hemistich-line">${esc(c.hemistich_1)}</div><div class="hemistich-line">${esc(c.hemistich_2)}</div></div>
+        </div>`;
+      }).join('')||emptyState('پیشنهادی یافت نشد','حرف دیگری را امتحان کنید.');
+    }catch{
+      list.innerHTML=emptyState('عدم ارتباط با سرور','اتصال اینترنت را بررسی کنید.');
+    }
+  }
+
+  function useMushairaSuggestion(el){
+    const txt=el?.dataset?.couplet||'';
+    if($('mushairaUserInput'))$('mushairaUserInput').value=txt;
+    submitMushairaTurn();
+  }
+
+  async function runRhymeSearch(wordOverride=''){
+    const inp=$('rhymeWordInput');
+    if(wordOverride&&inp)inp.value=wordOverride;
+    const word=(inp?.value||'').trim();
+    if(word.length<2){showToast('لطفاً واژه‌ای با حداقل ۲ حرف وارد کنید.');return;}
+    const cloud=$('rhymeWordsCloud');
+    const stream=$('rhymeCoupletsStream');
+    if(cloud)cloud.innerHTML='';
+    if(stream)stream.innerHTML=inlineLoader('در حال استخراج هم‌قافیه‌ها از دواوین کهن...');
+    try{
+      const res=await apiFetch(`/api/rhyme?word=${encodeURIComponent(word)}&limit=16`);
+      const rhymes=res?.rhymes||[];
+      const couplets=res?.couplets||[];
+      if(cloud){
+        cloud.innerHTML=rhymes.map(w=>`<button type="button" class="rhyme-word-pill" onclick="runRhymeSearch('${esc(w)}')">${esc(w)}</button>`).join('');
+      }
+      if(stream){
+        stream.innerHTML=couplets.map(coupletDiscoveryCard).join('')||emptyState('شاهد هم‌قافیه یافت نشد','واژه دیگری را امتحان کنید.');
+      }
+    }catch{
+      if(stream)stream.innerHTML=emptyState('خطا در ارتباط با سرور','اتصال اینترنت برقرار نیست.');
+    }
+  }
+
+  async function loadAlphabetCouplets(letter, btn){
+    document.querySelectorAll('#alphabetPickerGrid .alpha-letter-btn').forEach(b=>b.classList.toggle('active',b===btn));
+    const stream=$('rhymeCoupletsStream');
+    if(!stream)return;
+    stream.innerHTML=inlineLoader(`در حال بارگذاری ابیات مشاعره با حرف «${letter}»...`);
+    try{
+      const res=await apiFetch(`/api/mushaira?letter=${encodeURIComponent(letter)}&limit=12`);
+      const items=res?.suggestions||[];
+      stream.innerHTML=items.map(coupletDiscoveryCard).join('')||emptyState('بیتی یافت نشد','حرف دیگری را انتخاب کنید.');
+    }catch{
+      stream.innerHTML=emptyState('خطا در دریافت ابیات','ارتباط با سرور برقرار نشد.');
+    }
+  }
+
+  // ==========================================================================
+  // OFFLINE POET PACKS & QAF PLUS (MONETIZATION READY)
+  // ==========================================================================
+  function updatePoetOfflinePackUI(poetId){
+    const statusEl=$('poetOfflineStatus');
+    const btn=$('poetOfflineDownloadBtn');
+    if(!statusEl||!btn)return;
+    let savedCount=0;
+    try{savedCount=Number(localStorage.getItem(`qaf_offline_pack_poet_${poetId}`)||0);}catch{}
+    if(savedCount>0){
+      statusEl.innerText=`✓ ${faNum(savedCount)} شعر از این سخنور برای مطالعه کاملاً آفلاین ذخیره شده است.`;
+      btn.querySelector('span').innerText='به‌روزرسانی بسته آفلاین';
+    }else{
+      statusEl.innerText='گزیده اشعار این سخنور را برای مطالعه بدون اینترنت ذخیره کنید.';
+      btn.querySelector('span').innerText='ذخیره بسته آفلاین';
+    }
+  }
+
+  async function downloadPoetOfflinePack(){
+    const p=state.currentPoet;
+    if(!p?.id)return;
+    const btn=$('poetOfflineDownloadBtn');
+    const statusEl=$('poetOfflineStatus');
+    const limit=state.qafPlus?80:40;
+    if(btn)btn.disabled=true;
+    if(statusEl)statusEl.innerText='در حال دریافت و ذخیره‌سازی اشعار روی دستگاه...';
+    try{
+      const res=await apiFetch(`/api/poets/${Number(p.id)}/pack?limit=${limit}`,{timeout:25000});
+      const poems=res?.poems||[];
+      poems.forEach(item=>{
+        if(item?.poem?.poem_id)setCachedPoem(item.poem.poem_id,item);
+      });
+      try{localStorage.setItem(`qaf_offline_pack_poet_${p.id}`,String(poems.length));}catch{}
+      updatePoetOfflinePackUI(p.id);
+      showToast(`${faNum(poems.length)} شعر از ${p.name} برای مطالعه آفلاین ذخیره شد`);
+    }catch{
+      if(statusEl)statusEl.innerText='خطا در دریافت بسته آفلاین. اتصال اینترنت را بررسی کنید.';
+      showToast('دریافت بسته آفلاین ناموفق بود');
+    }finally{
+      if(btn)btn.disabled=false;
+    }
+  }
+
+  function renderPlusState(){
+    const btn=$('qafPlusToggleBtn');
+    const sub=$('qafPlusStatusSub');
+    const badge=$('drawerPlusBadge');
+    if(badge)badge.textContent=state.qafPlus?'فعال ✓':'✦';
+    if(btn)btn.textContent=state.qafPlus?'قاف پلاس فعال است ✓ (لغو حالت آزمایشی)':'فعال‌سازی آزمایشی قاف پلاس (رایگان)';
+    if(sub)sub.textContent=state.qafPlus
+      ?'تمامی امکانات قاف پلاس (حذف واترمارک، پوسته‌های یاقوت و فیروزه و کش ۵۰۰ شعری) روی این دستگاه فعال است.'
+      :'نسخه پیش‌نمایش حامیان روی این دستگاه قابل فعال‌سازی است.';
+  }
+
+  function toggleQafPlus(){
+    state.qafPlus=!state.qafPlus;
+    try{localStorage.setItem('qaf_plus_active',state.qafPlus?'1':'0');}catch{}
+    if(!state.qafPlus){
+      state.cardShowWatermark=true;
+      if(CARD_THEMES[state.cardTheme]?.pro)state.cardTheme='golden-vellum';
+    }
+    renderPlusState();
+    showToast(state.qafPlus?'«قاف پلاس» با موفقیت فعال شد ✦':'حالت آزمایشی قاف پلاس غیرفعال شد');
+  }
 
   function getBookmarks(type){
     try{return JSON.parse(localStorage.getItem(`qaf_bookmarked_${type}s`)||'[]');}catch{return[];}
@@ -3946,7 +6444,7 @@ body{overflow-x:hidden!important;}
       : type === 'poem'
       ? [d.poet_name || '', d.cat_title || '', d.century_id != null ? `قرن ${faNum(d.century_id)} هـ.ق` : 'دوره معاصر و سایر'].filter(Boolean).join(' • ')
       : [d.poet_name || '', d.title || d.cat_title || ''].filter(Boolean).join(' • ');
-    const label = type === 'poet' ? 'سخنور' : type === 'work' ? 'اثر' : type === 'poem' ? 'شعر' : 'مصرع / نثر';
+    const label = type === 'poet' ? 'سخنور' : type === 'work' ? 'اثر' : type === 'poem' ? 'شعر' : 'بیت / مصرع';
     const action = type === 'poet'
       ? `navigateTo('view-poet-detail',{poetId:${Number(id)}})`
       : type === 'work'
@@ -3971,7 +6469,8 @@ body{overflow-x:hidden!important;}
     const c=$('recentReadingContent'); if(!c)return;
     let d=null; try{d=JSON.parse(localStorage.getItem('qaf_last_read_poem')||'null');}catch{}
     if(!d?.poemId){c.innerHTML=emptyState('هنوز شعری نخوانده‌اید','با انتخاب یک اثر، مطالعه خود را آغاز کنید.');return;}
-    c.innerHTML=`<div class="poem-flat-card" onclick="navigateTo('view-poem-reader',{poemId:${Number(d.poemId)}})"><div class="poem-card-header"><span class="poem-number-badge">${esc(d.title)}</span></div><div class="poem-opening-couplet"><div class="hemistich-line">${esc(d.preview||'')}</div></div><div class="poem-card-footer"><span class="poem-meta-text">${esc(d.author||'')} • ${esc(d.workTitle||'')}</span><span class="poem-action-link">خوانش ←</span></div></div>`;
+    const linesHtml=String(d.preview||'').split(' / ').filter(Boolean).map(l=>`<div class="hemistich-line">${esc(l)}</div>`).join('');
+    c.innerHTML=`<div class="poem-flat-card" onclick="navigateTo('view-poem-reader',{poemId:${Number(d.poemId)}})"><div class="poem-card-header"><span class="poem-number-badge">${esc(d.title)}</span></div><div class="poem-opening-couplet">${linesHtml}</div><div class="poem-card-footer"><span class="poem-meta-text">${esc(d.author||'')} • ${esc(d.workTitle||'')}</span><span class="poem-action-link">خوانش ←</span></div></div>`;
   }
   function renderReadingHistory(){
     const c=$('historyListStream'); if(!c)return; let h=[]; try{h=JSON.parse(localStorage.getItem('qaf_reading_history')||'[]');}catch{}
@@ -3983,9 +6482,9 @@ body{overflow-x:hidden!important;}
 
   async function copyWalletAddress(btn,key){const el=document.querySelector(`[data-wallet="${key}"]`),text=el?.innerText?.trim()||"";if(!text)return;let ok=false;try{const cap=window.Capacitor?.Plugins?.Clipboard;if(cap?.write){await cap.write({string:text});ok=true;}}catch{}if(!ok){try{await navigator.clipboard.writeText(text);ok=true;}catch{}}if(!ok){try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0;';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);ok=document.execCommand('copy');document.body.removeChild(ta);}catch{}}btn.innerText=ok?"کپی شد":"کپی نشد";setTimeout(()=>btn.innerText="کپی",1400);}
 
-  function switchMainTab(tabId,btn){document.querySelectorAll('.workspace-tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn?.classList.add('active');$(tabId==='bookmarks'?'tabPanelBookmarks':'tabPanelHistory')?.classList.add('active');}
+  function switchMainTab(tabId,btn){document.querySelectorAll('#view-profile .workspace-tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('#view-profile .tab-panel').forEach(p=>p.classList.remove('active'));btn?.classList.add('active');$(tabId==='bookmarks'?'tabPanelBookmarks':'tabPanelHistory')?.classList.add('active');}
 
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.body.classList.contains('zen-active'))toggleZenMode(false);else{closeGlobalSearch();closeDrawer();}}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('cardStudioModal')?.open)return;if(document.body.classList.contains('zen-active'))toggleZenMode(false);else{closeGlobalSearch();closeDrawer();}}});
 
   window.navigateTo=navigateTo;
   window.openDrawer=openDrawer; window.closeDrawer=closeDrawer; window.openGlobalSearch=openGlobalSearch; window.closeGlobalSearch=closeGlobalSearch;
@@ -3995,12 +6494,22 @@ body{overflow-x:hidden!important;}
   window.loadWorks=loadWorks; window.scheduleWorkDirectorySearch=scheduleWorkDirectorySearch; window.resetWorkDirectoryFilters=resetWorkDirectoryFilters;
   window.loadFlatPoems=loadFlatPoems; window.filterFlatPoemsLive=filterFlatPoemsLive;
   window.toggleZenMode=toggleZenMode; window.copySingleVerse=copySingleVerse; window.copyFullPoem=copyFullPoem;
+  window.adjustReaderFontSize=adjustReaderFontSize; window.toggleMemorizeMode=toggleMemorizeMode;
   window.togglePoemBookmark=togglePoemBookmark; window.toggleVerseBookmark=toggleVerseBookmark; window.togglePoetBookmark=togglePoetBookmark;
   window.toggleWorkBookmarkFromButton=toggleWorkBookmarkFromButton; window.openCurrentPoemAuthor=openCurrentPoemAuthor; window.openCurrentWorkAuthor=openCurrentWorkAuthor;
   window.renderBookmarks=renderBookmarks; window.renderReadingHistory=renderReadingHistory; window.renderRecentReading=renderRecentReading;
   window.filterByCollection=filterByCollection; window.removeBookmarkUnit=removeBookmarkUnit; window.clearReadingHistory=clearReadingHistory;
   window.populateCenturyOptions=populateCenturyOptions; window.switchMainTab=switchMainTab;
   window.resetSearchPageFilters=resetSearchPageFilters; window.initTheme=initTheme; window.toggleTheme=toggleTheme; window.copyWalletAddress=copyWalletAddress;
+  window.loadDailyVerse=loadDailyVerse; window.openCardStudioFromDaily=openCardStudioFromDaily; window.selectDiscoverMood=selectDiscoverMood;
+  window.initFaalView=initFaalView; window.performFaalCeremony=performFaalCeremony; window.toggleFaalInterpretation=toggleFaalInterpretation;
+  window.openFaalInReader=openFaalInReader; window.openCardStudioFromFaal=openCardStudioFromFaal; window.resetFaalView=resetFaalView;
+  window.openCardStudio=openCardStudio; window.closeCardStudio=closeCardStudio; window.openCardStudioForVerse=openCardStudioForVerse; window.openCardStudioFromDataset=openCardStudioFromDataset;
+  window.setCardRatio=setCardRatio; window.setCardTheme=setCardTheme; window.updateCardTextSize=updateCardTextSize; window.updateCardLineSpacing=updateCardLineSpacing;
+  window.toggleCardAuthor=toggleCardAuthor; window.toggleCardWatermark=toggleCardWatermark; window.updateCardVersesText=updateCardVersesText; window.updateCardAuthorText=updateCardAuthorText; window.exportCardImage=exportCardImage;
+  window.switchMushairaTab=switchMushairaTab; window.startNewMushairaGame=startNewMushairaGame; window.submitMushairaTurn=submitMushairaTurn;
+  window.requestMushairaHint=requestMushairaHint; window.useMushairaSuggestion=useMushairaSuggestion; window.runRhymeSearch=runRhymeSearch; window.loadAlphabetCouplets=loadAlphabetCouplets;
+  window.downloadPoetOfflinePack=downloadPoetOfflinePack; window.toggleQafPlus=toggleQafPlus;
 
   function hideAppLoadingScreen(){
     const el = $('appLoadingScreen');
@@ -4010,21 +6519,24 @@ body{overflow-x:hidden!important;}
   function applyRouteFromHistory(){const r=history.state?.qafRoute;if(r?.view)navigateTo(r.view,r.params||{},{fromHistory:true});else navigateTo('view-home',{}, {fromHistory:true});}
   window.addEventListener('popstate',applyRouteFromHistory);
   document.addEventListener('DOMContentLoaded',async()=>{
-    initTheme();refreshCustomSelects();
+    initReaderPrefs();initTheme();refreshCustomSelects();renderPlusState();renderStreakBadge();
+    const studioDlg=$('cardStudioModal');
+    if(studioDlg){
+      studioDlg.addEventListener('close',()=>{state.cardStudioOpen=false;studioDlg.returnValue='';});
+      if(!('closedBy' in HTMLDialogElement.prototype)){
+        const outside=(e,dialog)=>{const r=dialog.getBoundingClientRect();return e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom;};
+        let pressedOutside=false;
+        studioDlg.addEventListener('pointerdown',e=>{pressedOutside=outside(e,studioDlg);});
+        studioDlg.addEventListener('pointerup',e=>{if(pressedOutside&&outside(e,studioDlg))studioDlg.close();});
+      }
+    }
     if(!history.state?.qafRoute)history.replaceState({qafRoute:{view:'view-home',params:{}},qafDepth:0},'',location.href.split('#')[0]+'#view-home');
     let qafBackBusy=false;
     const handleBack=()=>{
-      // Guard against the hardware/gesture back event firing more than once
-      // for a single physical press (this happens on some Android builds
-      // where both the Capacitor App plugin and the legacy Cordova
-      // `backbutton` event are dispatched together). Without this guard the
-      // second, near-simultaneous call would run against a DOM/history
-      // state that the first call hasn't finished updating yet, causing the
-      // "skips two pages" / "jumps home" / "jumps far back from zen mode"
-      // symptoms.
       if(qafBackBusy) return true;
       qafBackBusy=true;
       setTimeout(()=>{qafBackBusy=false;},260);
+      if($('cardStudioModal')?.open){closeCardStudio();return true;}
       if(qafSelectMenu?.classList.contains('is-open')){closeCustomSelect();return true;}
       if($('searchOverlay')?.classList.contains('is-open')){closeGlobalSearch();return true;}
       if(document.body.classList.contains('zen-active')){toggleZenMode(false);return true;}

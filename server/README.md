@@ -68,7 +68,7 @@ cd /opt/qaf/server
 
 Download the original database archive directly to your VPS from GitHub's CDN (takes ~2 seconds with VPS speeds):
 ```bash
-curl -L -o qaf.db.gz "https://media.githubusercontent.com/media/thecurumo/qaf_app/main/capacitor-app/www/assets/databases/qaf.db.gz"
+curl -L -o qaf.db.gz "https://media.githubusercontent.com/media/thecurumo/qaf_app/ce8d861/capacitor-app/www/assets/databases/qaf.db.gz"
 ```
 
 Decompress it:
@@ -265,6 +265,58 @@ Caddy automatically provisions free SSL/TLS certificates via Let's Encrypt / Zer
     "verses": [ ... ]
   }
   ```
+
+### 12. Ceremonial Faal-e Hafez
+`GET /api/faal` (or `GET /api/faal?id=:poemId`)
+- Selects a random Ghazal from Hafez (`poet_id = 2`, `cat_id = 24`), or returns a specific Ghazal if `id` or `poem_id` is supplied.
+- Generates or maps an authentic poetic interpretation (`تعبیر فال`) providing thoughtful, inspiring spiritual/life guidance.
+- Sets `no-cache` headers to ensure instant new randomness upon repeated invocation.
+- **Response**:
+  ```json
+  {
+    "poem": {
+      "poem_id": 2130,
+      "title": "غزل شمارهٔ ۱",
+      "cat_id": 24,
+      "cat_title": "غزلیات",
+      "poet_id": 2,
+      "poet_name": "حافظ",
+      "century_id": 8,
+      "birthplace": "شیراز"
+    },
+    "verses": [
+      {
+        "order": 1,
+        "items": [
+          { "poem_id": 2130, "vorder": 1, "position": 0, "text": "اَلا یا اَیُّهَا السّاقی اَدِرْ کَأسَاً و ناوِلْها" },
+          { "poem_id": 2130, "vorder": 2, "position": 1, "text": "که عشق آسان نمود اوّل ولی افتاد مشکل‌ها" }
+        ]
+      }
+    ],
+    "interpretation": "ای صاحب فال! کاری که در پیش گرفته‌ای در آغاز سهل و هموار می‌نماید...",
+    "poem_ids": [ 2130, 2131, 2132, ... ]
+  }
+  ```
+
+### 13. Daily Masterpiece Couplet (`بیت امروز`)
+`GET /api/daily` (or `GET /api/daily?random=1`)
+- Deterministically returns today's featured couplet on Iran Standard Time (`UTC+03:30`), or a random masterpiece couplet when `random=1`.
+
+### 14. Mood / Vibe Discovery (`شعرِ حالِ تو`)
+`GET /api/discover?mood=hope|love|calm|wisdom|joy|mystic&limit=4`
+- Returns diverse classical couplets matching the requested emotional theme.
+
+### 15. Interactive Mushaira Engine (`مشاعره هوشمند`)
+`GET /api/mushaira?letter=د&user_verse=...&exclude=123,456&limit=6`
+- Returns classical couplets starting with `letter` (or countering `user_verse`'s ending letter) along with `verified_in_archive` validation.
+
+### 16. Classical Rhyme & Radif Finder (`قافیه‌یاب`)
+`GET /api/rhyme?word=بهار&limit=20`
+- Extracts rhyming words (`rhymes`) and classical example couplets (`couplets`) ranked by prosodic suffix match, automatically stripping shared trailing radifs.
+
+### 17. Offline Poet Pack (`بسته مطالعه آفلاین`)
+`GET /api/poets/:id/pack?limit=40`
+- Batch-fetches up to 80 poems with grouped 2-hemistich couplets for 1-tap offline caching on client devices.
 
 ---
 

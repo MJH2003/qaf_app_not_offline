@@ -13,15 +13,12 @@ api.yourdomain.com {
         header_up X-Forwarded-Proto {scheme}
     }
 
-    # Security & CORS headers
+    # Security headers (CORS is handled by the Go backend middleware)
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "DENY"
         Referrer-Policy "strict-origin-when-cross-origin"
-        Access-Control-Allow-Origin "*"
-        Access-Control-Allow-Methods "GET, POST, OPTIONS"
-        Access-Control-Allow-Headers "Content-Type, Authorization, Accept, Origin, X-Requested-With"
     }
 
     # Structured access logging
