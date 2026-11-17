@@ -7,7 +7,7 @@
         </trust-anchors>
     </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">16.192.214.12</domain>
+        <domain includeSubdomains="true">18.116.203.175</domain>
         <domain includeSubdomains="true">localhost</domain>
     </domain-config>
 </network-security-config>
